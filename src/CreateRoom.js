@@ -1,8 +1,12 @@
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = "https://chat-bw04.onrender.com/rooms";
 const socket = socketIOClient(ENDPOINT);
+
+const token = Cookies.get('token');
+console.log(token);
 
 const CreateRoom = () => {
   const [roomName, setRoomName] = useState("");

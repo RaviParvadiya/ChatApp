@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Home = () => {
+  const token = Cookies.get('token');
+  console.log(token);
   return (
     <div>
       <Link to="/create-room">

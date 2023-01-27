@@ -9,7 +9,8 @@ import SignUp from "./SignUp";
 function App() {
   return (
     <Routes>
-      <Route path="/" exact element={<Home />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/create-room" element={<CreateRoom />} />

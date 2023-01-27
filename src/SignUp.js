@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { Socket } from "socket.io-client";
+import API from "./api/API";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -8,16 +8,25 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [isSignedUp, setIsSignedUp] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send a request to the server to create a new user
-    Socket.emit("", { username: username, email: email, password: password });
-    // If the signup is successful, set isSignedUp to true
-    setIsSignedUp(true);
+    try {
+      // Send a request to the server to create a new user
+      const response = await API.post("register", {
+        username,
+        email,
+        password,
+      });
+      console.log(response.data);
+      // If the signup is successful, redirect the user to the home page
+      setIsSignedUp(true);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
   };
 
   if (isSignedUp) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 
   return (
@@ -26,7 +35,7 @@ const SignUp = () => {
         <label>
           Username
           <input
-            type="username"
+            type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
