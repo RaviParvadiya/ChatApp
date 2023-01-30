@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import socketIOClient from "socket.io-client";
+// import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "";
-const socket = socketIOClient(ENDPOINT);
+// const ENDPOINT = "";
+// const socket = socketIOClient(ENDPOINT);
+
+const { io } = require("socket.io-client");
+const socket = io("https://chat-bw04.onrender.com/");
 
 const JoinRoom = () => {
   const [rooms, setRooms] = useState([]);
@@ -10,7 +13,7 @@ const JoinRoom = () => {
 
   useEffect(() => {
     // listen for room updates from the server
-    socket.on("", (data) => {
+    socket.on("allRooms", (data) => {
       setRooms(data.rooms);
     });
   }, []);

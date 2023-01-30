@@ -1,21 +1,28 @@
-import Cookies from "js-cookie";
 import React, { useState } from "react";
-import socketIOClient from "socket.io-client";
+import { useNavigate } from "react-router-dom";
+// import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "https://chat-bw04.onrender.com/rooms";
-const socket = socketIOClient(ENDPOINT);
+// const ENDPOINT = "https://chat-bw04.onrender.com/rooms";
+// const socket = socketIOClient(ENDPOINT);
 
-const token = Cookies.get('token');
-console.log(token);
+const { io } = require("socket.io-client");
+const socket = io("https://chat-bw04.onrender.com/rooms");
 
 const CreateRoom = () => {
-  const [roomName, setRoomName] = useState("");
+  const [room, setRoom] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const username = window.localStorage.getItem("username");
     // Emit an event to the server to create the room
-    socket.emit("", { roomName });
-    setRoomName("");
+    socket.connect("connect", () =>{
+    socket.emit("joinRoom", { username, room })});
+  
+    navigate("chat-room");
+    setRoom("");
   };
 
   return (
@@ -24,8 +31,9 @@ const CreateRoom = () => {
         Room Name:
         <input
           type="text"
-          value={roomName}
-          onChange={(e) => setRoomName(e.target.value)}
+          value={room}
+          required
+          onChange={(e) => setRoom(e.target.value)}
         />
       </label>
       <button type="submit">Create Room</button>
