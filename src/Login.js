@@ -17,7 +17,7 @@ const Login = () => {
         username,
         password,
       });
-      console.log(response.data.data);
+      console.log(response.data);
       // If the credentials are valid, set isLoggedIn to true
       window.localStorage.setItem("token", response.data.data);
       setIsLoggedIn(true);

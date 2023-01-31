@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-// import jwt from 'jsonwebtoken';
+import jwt_decode from "jwt-decode";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.212:3000/");
 
 const Home = () => {
   const [room, setRoom] = useState("");
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = useState('');
   const [selectedRoom, setSelectedRoom] = useState("");
 
   socket.on("connect", () => {
@@ -14,9 +14,10 @@ const Home = () => {
   });
 
   // listen for room updates from the server
-  socket.on("", (data) => {
-    console.log(data);
-    setRooms(data.rooms);
+  socket.on("allRooms", (data) => {
+    console.log(data[0].roomName);
+    setRooms(data[0].roomName);
+    console.log(rooms);
   });
 
   const handleSubmit = (e) => {
@@ -24,19 +25,15 @@ const Home = () => {
     socket.emit("", { roomName: selectedRoom });
   };
 
-  const secretKey = 'jkgbkjk^@%3465WHU&^IGYD823trgbeye@%^$&@$*@b5346543';
+  const token = window.localStorage.getItem("token");
 
-  const  token = window.localStorage.getItem('token');
-  console.log(token);
-
-  // const decoded = jwt.verify(token, secretKey);
+  const decoded = jwt_decode(token);
   // console.log(decoded);
 
   const createRoom = async (e) => {
     e.preventDefault();
-    const username = window.localStorage.getItem("username");
     // Emit an event to the server to create the room
-    socket.emit("joinRoom", username, room);
+    socket.emit("joinRoom", decoded.username, room);
     // navigate("chat-room");
     setRoom("");
   };
@@ -58,11 +55,14 @@ const Home = () => {
       </form>
       <p>Join Room</p>
       <div>
-        <div></div>
         <form onSubmit={handleSubmit}>
           <label>
             Select a Room:
-            <select></select>
+            <select
+              value={selectedRoom}
+              onChange={(e) => setSelectedRoom(e.target.value)}
+            >
+            </select>
           </label>
           <button type="submit">Join Room</button>
         </form>
