@@ -6,19 +6,23 @@ const socket = io("http://192.168.29.212:3000/");
 
 const Home = () => {
   const [room, setRoom] = useState("");
-  const [rooms, setRooms] = useState('');
+  const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState("");
 
   socket.on("connect", () => {
     console.log(socket.id);
   });
 
-  // listen for room updates from the server
-  socket.on("allRooms", (data) => {
-    console.log(data[0].roomName);
-    setRooms(data[0].roomName);
-    console.log(rooms);
-  });
+  useEffect(() => {
+    // listen for room updates from the server
+    socket.on("allRooms", (data) => {
+      console.log(data);
+      setRooms(data);
+    });
+    return () => {
+      socket.off("allRooms");
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +32,6 @@ const Home = () => {
   const token = window.localStorage.getItem("token");
 
   const decoded = jwt_decode(token);
-  // console.log(decoded);
 
   const createRoom = async (e) => {
     e.preventDefault();
@@ -62,6 +65,11 @@ const Home = () => {
               value={selectedRoom}
               onChange={(e) => setSelectedRoom(e.target.value)}
             >
+              {rooms.map((room) => (
+                <option key={room.id} value={room.roomName}>
+                  {room.roomName}
+                </option>
+              ))}
             </select>
           </label>
           <button type="submit">Join Room</button>
