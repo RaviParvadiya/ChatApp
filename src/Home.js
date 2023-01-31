@@ -42,9 +42,14 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <p>Create Room</p>
+    <div className="main-home">
+      <div className="home-head">
+      <p className="">Create Room</p>
+      </div>
+      
+      <div className="create-room-div">
       <form onSubmit={createRoom}>
+        <div className="room-name-txt">
         <label>
           Room Name:
           <input
@@ -54,11 +59,23 @@ const Home = () => {
             onChange={(e) => setRoom(e.target.value)}
           />
         </label>
+        </div>
+        
+        
         <button type="submit">Create Room</button>
       </form>
-      <p>Join Room</p>
-      <div>
+      </div>
+
+      <div className="join-room-box">
+
+      <div className="home-head">
+      <p className="">Join Room</p>
+      </div>
+
+      <div className="join-room-div">
         <form onSubmit={handleSubmit}>
+
+          <div className="select-room-drp-dwn">
           <label>
             Select a Room:
             <select
@@ -72,8 +89,12 @@ const Home = () => {
               ))}
             </select>
           </label>
+          </div>
+          
           <button type="submit">Join Room</button>
         </form>
+      </div>
+      
       </div>
     </div>
   );
