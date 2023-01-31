@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Rubik+Mono+One&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
 
 body {
     margin:0;
     padding:0;
     /* background: linear-gradient(#141e30, #243b55); */
+
   }
+ 
+.parent-div{
+  background-image: url('../Res/blurry_background.png');
+  background-size: cover;
+  height: 100vh;
+}  
   
 .head-login{
     text-align: center;
@@ -21,9 +30,7 @@ body {
     width: auto;
     padding: 50px;
     transform: translate(-50%, -50%);
-    /* background: rgb(21, 204, 119); */
     box-sizing: border-box;
-    /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
     border-radius: 10px;
   }
 

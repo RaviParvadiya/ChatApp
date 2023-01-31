@@ -63,7 +63,8 @@ const Login = () => {
         
         <button className="cta-login-btn" type="submit">Log in</button>
       </form>
-      <Link to="/signup">
+      {/* <div className="transition"></div> */}
+      <Link className="cta" to="/signup">
         <p>Don't have an account?</p>
       </Link>
     </div>
