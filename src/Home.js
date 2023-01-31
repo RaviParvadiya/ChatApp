@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.212:3000/");
@@ -29,8 +29,8 @@ const Home = () => {
   const  token = window.localStorage.getItem('token');
   console.log(token);
 
-  const decoded = jwt.verify(token, secretKey);
-  console.log(decoded);
+  // const decoded = jwt.verify(token, secretKey);
+  // console.log(decoded);
 
   const createRoom = async (e) => {
     e.preventDefault();

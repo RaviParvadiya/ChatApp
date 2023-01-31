@@ -22,9 +22,6 @@
     "util": "^0.12.5",
     "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  },
   "browser": {
     "crypto": false,
     "stream": false
