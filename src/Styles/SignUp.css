@@ -28,7 +28,7 @@ body {
 .signup-box {
     position: absolute;
     top: 50%;
-    left: 25%;
+    left: 75%;
     width: auto;
     padding: 50px;
     transform: translate(-50%, -50%);
@@ -38,7 +38,7 @@ body {
 
 
 
-  .cta-txt-home {
+  .cta-txt-signup {
     display: flex;
     padding: 5px 20px;
     text-decoration: none;
@@ -56,7 +56,7 @@ body {
     /* border: solid #252525; */
   }
   
-  .cta-txt-home:focus {
+  .cta-txt-signup:focus {
     outline: none;
   
   }
@@ -79,12 +79,13 @@ body {
     /* border: solid #252525; */
   }
   
-  .cta-login-btn:focus {
+  .cta-signup-btn:focus {
     outline: none;
   
   }
 
-  .cta-login-btn:hover {
+  .cta-signup-btn:hover {
+    cursor: pointer;
     transition: 0.5s;
     box-shadow: 5px 5px 0 #9b70c4;
     color: #B3ECBD;

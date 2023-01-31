@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
-import "../LinkSwitcher/LinkSwitcher.css"
-
-const LinkSwitcher = () => {
-  const [isLogin, setIsLogin] = useState(true);
-
-  return (
-    <div className="LinkSwitcher">
-      <div className={`LinkSwitcher-inner ${isLogin ? 'is-login' : 'is-signup'}`}>
-        <div
-          className={`LinkSwitcher-link ${isLogin ? 'is-active' : ''}`}
-          onClick={() => setIsLogin(true)}
-        >
-          Login
-        </div>
-        <div
-          className={`LinkSwitcher-link ${!isLogin ? 'is-active' : ''}`}
-          onClick={() => setIsLogin(false)}
-        >
-          Sign Up
-        </div>
-      </div>
-    </div>
-  );
+import { motion } from "framer-motion";
+const animationConfiguration = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
 };
-
+const LinkSwitcher = ({ children }) => {
+    return (
+        <motion.div
+            variants={animationConfiguration}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.7 }}
+        >
+            {children}
+            <motion.circle
+  initial={{ pathLength: 0 }}
+  animate={{ pathLength: 1 }}
+/>
+        </motion.div>
+        
+    );
+};
 export default LinkSwitcher;

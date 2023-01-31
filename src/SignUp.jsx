@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import API from "./api/API";
+import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
 import "./Styles/SignUp.css"
 
 const SignUp = () => {
@@ -31,6 +32,7 @@ const SignUp = () => {
   }
 
   return (
+    <LinkSwitcher>
     <div className="parent-div">
       <div className="signup-box">
       <h2 className="head-login">Sign Up</h2>
@@ -39,7 +41,7 @@ const SignUp = () => {
         <label>
           Username
           <input
-            className="cta-txt-home"
+            className="cta-txt-signup"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -51,7 +53,7 @@ const SignUp = () => {
         <label>
           Email
           <input
-            className="cta-txt-home"
+            className="cta-txt-signup"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -63,7 +65,7 @@ const SignUp = () => {
         <label>
           Password
           <input
-            className="cta-txt-home"
+            className="cta-txt-signup"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -78,6 +80,7 @@ const SignUp = () => {
       </Link>
       </div>
     </div>
+    </LinkSwitcher>
   );
 };
 

@@ -10,15 +10,13 @@
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "crypto-js": "^4.1.1",
+    "framer-motion": "^8.5.5",
     "js-cookie": "^3.0.1",
-<<<<<<< HEAD
     "jsonwebtoken": "^9.0.0",
-=======
     "node-sass": "^8.0.0",
->>>>>>> 22b7f2a (css-commit)
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.7.0",
+    "react-router-dom": "^6.8.0",
     "react-scripts": "^5.0.1",
     "socket.io-client": "^4.5.4",
     "stream": "^0.0.2",

@@ -83,6 +83,7 @@ body {
   }
 
   .cta-login-btn:hover {
+    cursor: pointer;
     transition: 0.5s;
     box-shadow: 5px 5px 0 #9b70c4;
     color: #B3ECBD;
