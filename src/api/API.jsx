@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: `https://chat-bw04.onrender.com/`
+  baseURL: `http://192.168.29.212:3000/`
 });

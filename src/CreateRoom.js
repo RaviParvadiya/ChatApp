@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 // const socket = socketIOClient(ENDPOINT);
 
 const { io } = require("socket.io-client");
-const socket = io("https://chat-bw04.onrender.com/rooms");
+const socket = io("http://192.168.29.212:3000/rooms");
 
 const CreateRoom = () => {
   const [room, setRoom] = useState("");

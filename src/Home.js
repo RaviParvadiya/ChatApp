@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 
 const { io } = require("socket.io-client");
-const socket = io("https://chat-bw04.onrender.com/");
+const socket = io("http://192.168.29.212:3000/");
 
 const Home = () => {
   const [room, setRoom] = useState("");
