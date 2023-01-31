@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import jwt from 'jsonwebtoken';
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.212:3000/");
@@ -9,14 +9,12 @@ const Home = () => {
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState("");
 
-  // const navigate = useNavigate();
-
   socket.on("connect", () => {
     console.log(socket.id);
   });
 
   // listen for room updates from the server
-  socket.on("allRooms", (data) => {
+  socket.on("", (data) => {
     console.log(data);
     setRooms(data.rooms);
   });
@@ -25,6 +23,14 @@ const Home = () => {
     e.preventDefault();
     socket.emit("", { roomName: selectedRoom });
   };
+
+  const secretKey = 'jkgbkjk^@%3465WHU&^IGYD823trgbeye@%^$&@$*@b5346543';
+
+  const  token = window.localStorage.getItem('token');
+  console.log(token);
+
+  const decoded = jwt.verify(token, secretKey);
+  console.log(decoded);
 
   const createRoom = async (e) => {
     e.preventDefault();
