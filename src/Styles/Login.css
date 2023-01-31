@@ -1,0 +1,33 @@
+@import url('https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css');
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+
+.cta-txt-home {
+    display: flex;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #559661;
+    background: #B3ECBD;
+    transition: 1s;
+    box-shadow: 3px 3px 0 #252525;
+    transform: skewX(-15deg);
+    margin-right: 10px;
+    /* margin-top: ; */
+    /* padding: 2rem 0 2rem 0; */
+    /* border: solid #252525; */
+  }
+  
+  .cta-txt-home:focus {
+    outline: none;
+    
+  }
+  .cta-txt-home:hover {
+    outline: auto;
+    transition: 0.5s;
+    box-shadow: 5px 5px 0 #9b70c4;
+    color: #B3ECBD;
+    background-color: #559661; 
+}

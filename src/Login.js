@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import API from "./api/API";
+import "./Styles/Login.css"
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -29,16 +30,23 @@ const Login = () => {
   }
 
   return (
-    <div>
+    
+    <div className='parent-login'>
+      <div className='form-main'>
       <form onSubmit={handleSubmit}>
+        <div className='uname-div'>
         <label>
           Username
           <input
+            className='cta-txt-home'
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
+        </div>
+        
+        <div className='pass-div'>
         <label>
           Password
           <input
@@ -47,12 +55,17 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
+        </div>
+        <div className='submit-btn'>
         <button type="submit">Log in</button>
+        </div>
+        
       </form>
-      <Link to="/signup">
-        <p>Don't have an account?</p>
-      </Link>
+      </div>
+      
+      <Link className='signup-lnk' to="/signup">Don't have an account?</Link>
     </div>
+
   );
 };
 
