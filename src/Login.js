@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import API from "./api/API";
 import "./Styles/Login.css"
 
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +19,6 @@ const Login = () => {
       });
       console.log(response.data);
       // If the credentials are valid, set isLoggedIn to true
-      window.localStorage.setItem("username", response.data.data.username);
       setIsLoggedIn(true);
     } catch (error) {
       console.log(error);
@@ -30,15 +30,17 @@ const Login = () => {
   }
 
   return (
+    <div className="parent-div">
     
-    <div className='parent-login'>
-      <div className='form-main'>
+    
+    <div className="login-box">
+        <h2 className="head-login">Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className='uname-div'>
+        <div className="user-box">
         <label>
           Username
           <input
-            className='cta-txt-home'
+            className="cta-txt-home"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -46,26 +48,28 @@ const Login = () => {
         </label>
         </div>
         
-        <div className='pass-div'>
+        <div className="user-box">
         <label>
           Password
           <input
+            className="cta-txt-home"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
         </div>
-        <div className='submit-btn'>
-        <button type="submit">Log in</button>
-        </div>
         
+        <button className="cta-login-btn" type="submit">Log in</button>
       </form>
-      </div>
-      
-      <Link className='signup-lnk' to="/signup">Don't have an account?</Link>
+      <Link to="/signup">
+        <p>Don't have an account?</p>
+      </Link>
     </div>
-
+    {/* <div className="second-compo">
+        Welcome to Chat Aréna
+    </div> */}
+    </div>
   );
 };
 
