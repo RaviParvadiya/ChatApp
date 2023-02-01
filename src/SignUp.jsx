@@ -48,6 +48,7 @@ const SignUp = () => {
         </div>
 
 
+    <div className="parent-div">
       <div className="signup-box">
       <h2 className="head-login">Sign Up</h2>
       <form onSubmit={handleSubmit}>
@@ -94,7 +95,8 @@ const SignUp = () => {
       </Link>
       </div>
     </div>
-
+    </div>
+    
      </LinkSwitcher>
   );
 };
