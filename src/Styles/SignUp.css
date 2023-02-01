@@ -51,9 +51,7 @@ body {
     transform: skewX(-15deg);
     margin-right: 10px;
     margin: 10px 0 10px 0;
-    /* margin-top: ; */
-    /* padding: 2rem 0 2rem 0; */
-    /* border: solid #252525; */
+   
   }
   
   .cta-txt-signup:focus {
@@ -74,9 +72,6 @@ body {
     transform: skewX(-15deg);
     margin-right: 10px;
     margin: 30px 0 30px 0;
-    /* margin-top: ; */
-    /* padding: 2rem 0 2rem 0; */
-    /* border: solid #252525; */
   }
   
   .cta-signup-btn:focus {
