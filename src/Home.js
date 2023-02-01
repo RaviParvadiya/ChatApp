@@ -29,7 +29,9 @@ const Home = () => {
 
   const joinRoom = (e) => {
     e.preventDefault();
+    console.log(selectedRoom);
     socket.emit("joinRoom", decoded.username, selectedRoom);
+    // socket.emit("new message", selectedRoom, "hello", decoded.username);
     navigate("chat-room");
   };
 
@@ -77,6 +79,7 @@ const Home = () => {
                   value={selectedRoom}
                   onChange={(e) => setSelectedRoom(e.target.value)}
                 >
+                  <option value={null}>Select an option</option>
                   {rooms.map((room) => (
                     <option key={room._id} value={room.roomName}>
                       {room.roomName}
