@@ -3,6 +3,11 @@ import { Link, Navigate } from "react-router-dom";
 import API from "./api/API";
 import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
 import "./Styles/Login.css"
+import logo from "./Res/login-img.svg"
+
+// framer Motion
+
+// import "./Res/"
 
 
 const Login = () => {
@@ -33,7 +38,16 @@ const Login = () => {
 
   return (
     <LinkSwitcher>
+
+
     <div className="parent-div">
+
+      <div className="img-back">
+        <img alt='' className="img-login" src={logo}></img>
+        <img alt='' className="img-login-back" src={logo}></img>
+        
+      {/* <img alt='background-img' src='./Res/login-img.png'></img> */}
+      </div>
     
     
     <div className="login-box">
@@ -69,11 +83,13 @@ const Login = () => {
       <Link className="cta" to="/signup">
         <p>Don't have an account?</p>
       </Link>
+
     </div>
     {/* <div className="second-compo">
         Welcome to Chat Aréna
     </div> */}
     </div>
+
     </LinkSwitcher>
   );
 };

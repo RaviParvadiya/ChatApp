@@ -30,8 +30,8 @@ body {
     width: auto;
     padding: 50px;
     transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    border-radius: 10px;
+    /* border-right: solid #252525; */
+    
   }
 
 
@@ -235,3 +235,45 @@ body {
       bottom: 100%;
     }
   } */
+
+/* .login-box{
+  border-right: solid #252525;
+  animation: line-anim 1s ease-in-out ;
+}
+
+@keyframes line-anim{
+  0%{
+    top: 50%;
+    left: 25%;
+  }
+  33%{
+    top: 50%;
+    left: 40%;
+  }
+  66%{
+    top: 50%;
+    left: 60%;
+  }
+  100%{
+    top: 50%;
+    left: 75%;
+  }
+} */
+
+.img-login{
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  /* transform: scaleX(-1); */
+  /* opacity: 0.9; */
+}
+
+.img-login-back{
+  position:static;
+  top: 25%;
+  left: 100%;
+  opacity: 0.03;
+  height: 1000px;
+}
+
+
