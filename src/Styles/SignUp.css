@@ -94,8 +94,9 @@ body {
 
 .img-signup{
   position: absolute;
-  top: 20%;
-  left: 50%;
+  top: 23%;
+  left: 45%;
+  height: 40vh;
   /* transform: scaleX(-1); */
   /* opacity: 0.9; */
 }

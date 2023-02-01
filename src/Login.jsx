@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import API from "./api/API";
 import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
 import "./Styles/Login.css"
-import logo from "./Res/login-img.svg"
+import logo from "./Res/login-auth.svg"
 
 // framer Motion
 

@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import API from "./api/API";
 import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
 import "./Styles/SignUp.css"
-import signup from "./Res/signup-img.svg"
+import signup from "./Res/wlcm-cat.svg"
 
 // Framer Motion
 
@@ -96,7 +96,7 @@ const SignUp = () => {
       </div>
     </div>
     </div>
-    
+
      </LinkSwitcher>
   );
 };
