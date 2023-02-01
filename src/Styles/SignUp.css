@@ -28,7 +28,7 @@ body {
 .signup-box {
     position: absolute;
     top: 50%;
-    left: 75%;
+    left: 25%;
     width: auto;
     padding: 50px;
     transform: translate(-50%, -50%);
@@ -51,9 +51,7 @@ body {
     transform: skewX(-15deg);
     margin-right: 10px;
     margin: 10px 0 10px 0;
-    /* margin-top: ; */
-    /* padding: 2rem 0 2rem 0; */
-    /* border: solid #252525; */
+   
   }
   
   .cta-txt-signup:focus {
@@ -74,9 +72,6 @@ body {
     transform: skewX(-15deg);
     margin-right: 10px;
     margin: 30px 0 30px 0;
-    /* margin-top: ; */
-    /* padding: 2rem 0 2rem 0; */
-    /* border: solid #252525; */
   }
   
   .cta-signup-btn:focus {
@@ -92,6 +87,30 @@ body {
     background-color: #559661; 
 }
 
+/* --------------------------------------------------------------- */
+
+/* Background Img */
+
+
+.img-signup{
+  position: absolute;
+  top: 23%;
+  left: 45%;
+  height: 40vh;
+  /* transform: scaleX(-1); */
+  /* opacity: 0.9; */
+}
+
+.img-signup-back{
+  top: 20%;
+  right: 100%;
+  opacity: 0.03;
+  height: 1000px;
+}
+
+
+
+/* -------------------------------------------------------------- */
   
   /* .login-box h2 {
     margin: 0 0 30px;

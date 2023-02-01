@@ -3,6 +3,10 @@ import { Link, Navigate } from "react-router-dom";
 import API from "./api/API";
 import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
 import "./Styles/SignUp.css"
+import signup from "./Res/wlcm-cat.svg"
+
+// Framer Motion
+
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -33,6 +37,17 @@ const SignUp = () => {
 
   return (
     <LinkSwitcher>
+
+    <div className="parent-div">
+
+
+        <div className="img-back">
+          <img alt='op' className="img-signup" src={signup}></img>
+          <img alt='op1' className="img-signup-back" src={signup}></img>
+          
+        </div>
+
+
     <div className="parent-div">
       <div className="signup-box">
       <h2 className="head-login">Sign Up</h2>
@@ -80,7 +95,9 @@ const SignUp = () => {
       </Link>
       </div>
     </div>
-    </LinkSwitcher>
+    </div>
+
+     </LinkSwitcher>
   );
 };
 
