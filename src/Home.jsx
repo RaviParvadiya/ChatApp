@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import "./Styles/Home.css"
+import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
+import { FaExternalLinkSquareAlt } from "react-icons/fa";
+import landImg from "./Res/home-buddies.svg"
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.212:3000/");
@@ -44,36 +48,62 @@ const Home = () => {
   };
 
   return (
+    <LinkSwitcher>
     <div className="main-home">
-      <div className="home-head">
-        <p className="">Create Room</p>
+            
+        <div className='wlcm-txt'>
+            <h2 className='home-head'>Hey! Welcome to Chat AR<span className='style-e'>é</span>NA</h2>
+            <p className='ani-txt'>Let's</p>
+            <p className='span-txt'><span className='animated-txt'></span></p>
+            <div className="scroll-hit" onClick={() => window.location.replace("#create-rm")}>
+            <p>Create Room</p>
+            <div className="img-back">
+            <img alt='' className="img-login" src={landImg}></img>
+            {/* <img alt='' className="img-login-back" src={landImg}></img> */}
+        
+            {/* <img alt='background-img' src='./Res/login-img.png'></img> */}
+            </div>
+            <FaExternalLinkSquareAlt/>
+            </div>
+        </div>
+        
+
+      <div className="page-2" id="create-rm">
+      
+      <div className='flexbox-p2'>
+      <div className="create-room-box">
+      <div className="main-home-child">
+      <p className="head-join-create">Create Room</p>
       </div>
       <div className="create-room-div">
         <form onSubmit={createRoom}>
           <div className="room-name-txt">
             <label>
-              Room Name:
               <input
+                placeholder="Enter room name"
+                className="cta-txt-home-page"
                 type="text"
                 value={room}
                 required
                 onChange={(e) => setRoom(e.target.value)}
               />
             </label>
+            <button className="cta-home-btns" type="submit">Create Room</button>
           </div>
-          <button type="submit">Create Room</button>
+          
         </form>
       </div>
+      </div>
       <div className="join-room-box">
-        <div className="home-head">
-          <p className="">Join Room</p>
+        <div className="main-home-child-2">
+          <p className="head-join-create">Join Room</p>
         </div>
         <div className="join-room-div">
           <form onSubmit={joinRoom}>
             <div className="select-room-drp-dwn">
               <label>
-                Select a Room:
                 <select
+                  className='cta-drp-dwn'
                   value={selectedRoom}
                   onChange={(e) => setSelectedRoom(e.target.value)}
                 >
@@ -85,12 +115,18 @@ const Home = () => {
                   ))}
                 </select>
               </label>
+            <button className='cta-home-btns' type="submit">Join Room</button>
             </div>
-            <button type="submit">Join Room</button>
+
           </form>
         </div>
       </div>
+      </div>
+
+      </div>
     </div>
+    </LinkSwitcher>
+
   );
 };
 
