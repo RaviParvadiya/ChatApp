@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.212:3000/");
 
-const ChatRoom = () => {
-  socket.on("allUser", (data) => {
-    console.log(data);
-  })
-  socket.emit("new message", "input");
-  socket.on("send message", (msg) => {
-    console.log(msg);
-  });
-  return <div>ChatRoom</div>;
+const ChatRoom = (props) => {
+  const [msgs, setMsgs] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [input, setInput] = useState("");
+
+  console.log("room", props);
+
+  return <div className="chat-room">Chatroom</div>;
 };
 
 export default ChatRoom;
