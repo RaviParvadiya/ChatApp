@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import ChatRoom from "./ChatRoom";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.212:3000/");
@@ -11,7 +10,13 @@ const Home = () => {
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState("");
 
+  const token = window.localStorage.getItem("token");
+  const decoded = jwt_decode(token);
+
   const navigate = useNavigate();
+
+  window.localStorage.setItem("room", selectedRoom);
+  window.localStorage.setItem("username", decoded.username);
 
   socket.on("connect", () => {
     console.log(socket.id);
@@ -26,20 +31,16 @@ const Home = () => {
     };
   }, []);
 
-  const joinRoom = (e) => {
-    e.preventDefault();
-    socket.emit("joinRoom", decoded.username, selectedRoom);
-    navigate("chat-room");
-    return <ChatRoom room={selectedRoom} />;
-  };
-
-  const token = window.localStorage.getItem("token");
-  const decoded = jwt_decode(token);
-
   const createRoom = async (e) => {
     e.preventDefault();
     socket.emit("joinRoom", decoded.username, room);
     setRoom("");
+  };
+
+  const joinRoom = (e) => {
+    e.preventDefault();
+    // socket.emit("joinRoom", decoded.username, selectedRoom);
+    navigate("chat-room");
   };
 
   return (
