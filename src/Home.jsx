@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import ChatRoom from "./ChatRoom";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.212:3000/");
@@ -17,9 +18,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    // listen for room updates from the server
     socket.on("allRooms", (data) => {
-      // console.log(data);
       setRooms(data);
     });
     return () => {
@@ -29,10 +28,9 @@ const Home = () => {
 
   const joinRoom = (e) => {
     e.preventDefault();
-    console.log(selectedRoom);
     socket.emit("joinRoom", decoded.username, selectedRoom);
-    // socket.emit("new message", selectedRoom, "hello", decoded.username);
     navigate("chat-room");
+    return <ChatRoom room={selectedRoom} />;
   };
 
   const token = window.localStorage.getItem("token");
@@ -40,7 +38,6 @@ const Home = () => {
 
   const createRoom = async (e) => {
     e.preventDefault();
-    // Emit an event to the server to create the room
     socket.emit("joinRoom", decoded.username, room);
     setRoom("");
   };
