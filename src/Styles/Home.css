@@ -1,5 +1,273 @@
-body{
-    background-color: black;
-    background-image: none;
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+.main-home{
+    padding: 5% 10%;
 }
+
+.scroll-hit{
+    font-size: 1rem;
+    color: #498071;
+    display: flex;
+    background-color: #252525;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    border: solid #252525;
+    border-radius: 5px;
+    max-width: fit-content;
+    max-height: 40px;
+    padding: 0 2%;
+    box-shadow: 3px 3px 5px #252525;
+}
+.scroll-hit:hover{
+    cursor: pointer;
+
+}
+
+.wlcm-txt{
+    font-size: 6rem;
+    font-weight: 600;
+    color: #498071;
+    min-height: 980px;
+    
+  }
+
+  .wlcm-txt p{
+    margin-right: 10px;
+  }
+
+  .home-head{
+    font-size: 7rem;
+  }
+
+  .ani-txt{
+    margin-bottom: 0;
+    font-size: 3.5rem;
+  }
+
+  .style-e{
+    color: #252525;
+  }
+
+  .span-txt{
+    margin-top: 0;
+  }
+
+  .animated-txt{
+    margin-top: 0;
+    position: relative;
+    color: #252525; 
+  }
+  
+  .animated-txt::after{
+    background-color: #25252525;
+    /* padding-left: 5px; */
+    border-right: solid 10px #498071;
+    border-radius: 1px;
+  
+    content: "";
+    animation: spin 16s ease-in-out infinite;
+  }
+  
+  @keyframes spin{
+    0% {content: "d"; }
+    2% {content: "do";}
+    4% {content: "do c"; }
+    6% {content: "do ch"; }
+    8% {content: "do cha"; }
+    10% {content: "do chat"; }
+    12% {content: "do chat"; }
+    14% {content: "do cha"; }
+    16% {content: "do ch"; }
+    18% {content: "do c"; }
+    20% {content: "do"; }
+    22% {content: "d"; }
+    24% {content: "m"; }
+    26% {content: "m"; }
+    28% {content: "ma"; }
+    30% {content: "mak"; }
+    32% {content: "make"; }
+    34% {content: "make g"; }
+    36% {content: "make go"; }
+    38% {content: "make gos"; }
+    40% {content: "make goss"; }
+    42% {content: "make gossi"; }
+    44% {content: "make gossip"; }
+    46% {content: "make gossips"; }
+    48% {content: "make gossips"; }
+    50% {content: "make gossip"; }
+    52% {content: "make gossi"; }
+    54% {content: "make goss"; }
+    56% {content: "make gos"; }
+    58% {content: "make go"; }
+    60% {content: "make g"; }
+    62% {content: "make"; }
+    64% {content: "mak"; }
+    66% {content: "ma"; }
+    68% {content: "m"; }
+    70% {content: "h"; }
+    72% {content: "h"; }
+    74% {content: "ha"; }
+    76% {content: "hav"; }
+    78% {content: "have"; }
+    80% {content: "have f"; }
+    82% {content: "have fu"; }
+    84% {content: "have fun"; }
+    86% {content: "have fun"; }
+    88% {content: "have fu"; }
+    90% {content: "have f"; }
+    92% {content: "have"; }
+    94% {content: "hav"; }
+    96% {content: "ha"; }
+    98% {content: "h"; }
+    100% {content: "d"; }
+    /* 100% {content: ""; } */
+  }
+
+
+
+.cta-txt-home-page {
+    display: flex;
+    padding: 5px 0px 5px 20px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #559661;
+    background: #B3ECBD;
+    transition: 1s;
+    box-shadow: 3px 3px 10px #252525;
+    transform: skewX(-15deg);
+    margin-right: 10px;
+    border: solid 2px #252525;
+    min-width: 350px;
+    /* margin: 10px 0 10px 0; */
+    /* margin-top: ; */
+    /* padding: 2rem 0 2rem 0; */
+    /* border: solid #252525; */
+  }
+  
+  .cta-txt-home-page:focus {
+    outline: none;
+  
+  }
+
+  .cta-home-btns {
+    display: flex;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #559661;
+    background: #B3ECBD;
+    transition: 1s;
+    box-shadow: 3px 3px 10px #252525;
+    transform: skewX(-15deg);
+    max-width: auto;
+    min-width: fit-content;
+    /* margin-right: 10px; */
+    /* margin: 30px 0 30px 0; */
+    /* margin-top: ; */
+    /* padding: 2rem 0 2rem 0; */
+    /* border: solid #252525; */
+  }
+  
+  .cta-home-btns:focus {
+    outline: none;
+  
+  }
+
+  .cta-home-btns:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 5px 5px 2px #9b70c4;
+    color: #B3ECBD;
+    background-color: #559661; 
+}
+
+.room-name-txt{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.select-room-drp-dwn{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.cta-drp-dwn {
+    display: flex;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #559661;
+    background: #B3ECBD;
+    transition: 1s;
+    box-shadow: 3px 3px 10px #252525;
+    transform: skewX(-15deg);
+    margin-right: 10px;
+    min-width: 350px;
+    border: solid 2px #252525;
+    /* margin: 10px 0 10px 0; */
+    /* margin-top: ; */
+    /* padding: 2rem 0 2rem 0; */
+    /* border: solid #252525; */
+  }
+  
+  .cta-drp-dwn:focus {
+    outline: none;
+  
+  }
+
+  .head-join-create{
+    font-size: 2rem;
+    font-weight: 600;
+    color: #252525;
+  }
+
+  .join-room-box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+
+  }
+
+  .create-room-box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;    
+  }
+
+  .page-2{
+    min-height: 800px;
+    padding-top: 5%;
+
+  }
+
+  .flexbox-p2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    /* padding: 50%; */
+  }
+
+  .img-login{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: scaleX(-1);
+    /* opacity: 0.5; */
+  }
+  
+  .img-login-back{
+    position:absolute;
+    top: 25%;
+    left: 100%;
+    opacity: 0.03;
+    height: 1000px;
+  }
 
