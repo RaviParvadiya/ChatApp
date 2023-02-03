@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:900i');
 
+body::-webkit-scrollbar {
+  width: 0.1em;
+  background-color: #ccc;
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: #000000;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+background-color: #555;
+}
+
+body::-webkit-scrollbar-thumb:active {
+background-color: #555;
+}
+
+body::-webkit-scrollbar-corner {
+background-color: #f5f5f500;
+}
+
 .main-home{
     /* padding: 5% 10%; */
     /* background-image: url('/src/Res/home-buddies.svg');
@@ -35,6 +56,7 @@
     color: #498071;
     min-height: 980px;
     padding: 5% 10%;
+    text-shadow: 4px 4px 10px #2525254d;
   }
 
   .wlcm-txt p{
@@ -228,6 +250,7 @@
     font-size: 2rem;
     font-weight: 600;
     color: #252525;
+    text-shadow: 4px 4px 10px #2525255d;
   }
 
   .join-room-box{
@@ -265,6 +288,7 @@
     left: 50%;
     transform: scaleX(-1);
     /* opacity: 0.5; */
+    
   }
   .img-login-k{
     position: absolute;

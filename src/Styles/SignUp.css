@@ -9,10 +9,10 @@ body {
 
   }
  
-.parent-div{
+.parent-div-signup{
   background-image: url('../Res/blurry_background.png');
   background-size: cover;
-  height: 100vh;
+  /* height: 99vh; */
 }  
   
 .head-login{
@@ -28,7 +28,7 @@ body {
 .signup-box {
     position: absolute;
     top: 50%;
-    left: 25%;
+    left: 75%;
     width: auto;
     padding: 50px;
     transform: translate(-50%, -50%);
@@ -94,8 +94,8 @@ body {
 
 .img-signup{
   position: absolute;
-  top: 23%;
-  left: 45%;
+  top: 25%;
+  left:10%;
   height: 40vh;
   /* transform: scaleX(-1); */
   /* opacity: 0.9; */
@@ -105,7 +105,7 @@ body {
   top: 20%;
   right: 100%;
   opacity: 0.03;
-  height: 1000px;
+  height: 90vh;
 }
 
 

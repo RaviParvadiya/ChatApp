@@ -8,10 +8,10 @@
     z-index: 999;
     color: #252525;
     background-color: rgba(255, 195, 158, 0);
-    box-shadow: 0px 2px 10px #2525252f;
+    box-shadow: 0px 0px 0px #2525252f;
     transition:2s ease;
     /* transition: box-shadow 2s ease; */
-    padding: 0.5% 1%;
+    padding: 0.6% 1%;
   }
 
   .logo-nav{
@@ -21,7 +21,7 @@
 
   .scrolled {
     box-shadow: 0 3px 5px #2525258a;
-    background-color: rgba(255, 183, 141, 0.95);
+    background-color: #b3ecbdc5;
     color: #00664F;
 
   }
