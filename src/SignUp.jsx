@@ -48,7 +48,7 @@ const SignUp = () => {
         </div>
 
 
-    <div className="parent-div">
+    <div className="parent-div-signup">
       <div className="signup-box">
       <h2 className="head-login">Sign Up</h2>
       <form onSubmit={handleSubmit}>

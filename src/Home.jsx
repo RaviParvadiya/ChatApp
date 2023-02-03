@@ -5,6 +5,7 @@ import "./Styles/Home.css"
 import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
 import landImg from "./Res/home-buddies.svg"
+import Navbar from "./Navbar";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.43.246:5000");
@@ -50,19 +51,22 @@ const Home = () => {
   return (
     <LinkSwitcher>
     <div className="main-home">
+
+      <Navbar />
             
         <div className='wlcm-txt'>
             <h2 className='home-head'>Hey! Welcome to Chat AR<span className='style-e'>é</span>NA</h2>
             <p className='ani-txt'>Let's</p>
             <p className='span-txt'><span className='animated-txt'></span></p>
-            <div className="scroll-hit" onClick={() => window.location.replace("#create-rm")}>
-            <p>Create Room</p>
             <div className="img-back">
-            <img alt='' className="img-login" src={landImg}></img>
-            {/* <img alt='' className="img-login-back" src={landImg}></img> */}
+            <img alt='' className="img-login-home" src={landImg}></img>
+            <img alt='' className="img-login-k" src={landImg}></img>
+            
         
             {/* <img alt='background-img' src='./Res/login-img.png'></img> */}
             </div>
+            <div className="scroll-hit" onClick={() => window.location.replace("#create-rm")}>
+            <p>Create Room</p>
             <FaExternalLinkSquareAlt/>
             </div>
         </div>

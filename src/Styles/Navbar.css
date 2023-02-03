@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Rubik+Mono+One&family=Syne:wght@400;500;600;700;800&display=swap');
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    color: #252525;
+    background-color: rgba(255, 195, 158, 0);
+    box-shadow: 0px 0px 0px #2525252f;
+    transition:2s ease;
+    /* transition: box-shadow 2s ease; */
+    padding: 0.6% 1%;
+  }
+
+  .logo-nav{
+    color: #000;
+    border-top: solid 4px #00664F;
+  }
+
+  .scrolled {
+    box-shadow: 0 3px 5px #2525258a;
+    background-color: #b3ecbdc5;
+    color: #00664F;
+
+  }
+  
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .logo {
+    /* font-family: 'Fredoka One', cursive; */
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0 150px 0 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    /* margin-left: 16px; */
+    color: #252525;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0 10%;
+    color: #252525;
+    transition: 2s ease;
+  }
+
+  .scrolled-link{
+    color: aliceblue;
+  }
+
+  a{
+    text-decoration: none;
+  }
+  
