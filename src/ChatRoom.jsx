@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 const { io } = require("socket.io-client");
-const socket = io("http://192.168.29.18:5000");
+const socket = io("http://192.168.43.246:5000");
 
 const ChatRoom = () => {
   const [msgs, setMsgs] = useState([]);
@@ -10,39 +10,45 @@ const ChatRoom = () => {
   const room = window.localStorage.getItem("room");
   const username = window.localStorage.getItem("username");
 
-    socket.emit("joinRoom", username, room);
+  socket.emit("joinRoom", username, room);
 
-    socket.on("message", (msg) => {
-      const messageContainer = document.getElementById("wlc");
-      messageContainer.innerHTML = msg.text;
-    })
+  socket.on("message", (msg) => {
+    const messageContainer = document.getElementById("wlc");
+    messageContainer.innerHTML = msg.username + ': ' + msg.text;
+  });
 
-    socket.on("info", (msg) => {
-      const messageContainer = document.getElementById("joinedMessage");
-      messageContainer.innerHTML = msg.username + ' ' + msg.text;
-    })
+  socket.on("info", (msg) => {
+    const messageContainer = document.getElementById("joinedMessage");
+    messageContainer.innerHTML = msg.username + " " + msg.text;
+  });
 
-    socket.emit("getroominfo", room);
+  socket.emit("getroominfo", room);
 
-    socket.on('allUser', (data) => {
-      console.log('allUser:', data);
-    });
+  socket.on("allUser", (data) => {
+    const names = data.map((user) => user.username);
+    // console.log('allUser:', names);
+  });
 
-/*     const sendMessage = (e) => {
-      e.preventDefault();
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (input) {
       socket.emit("new message", room, input, username);
-      setInput("");
-    };
-   */
+    }
+  };
+  
+    socket.on("new message", (data) => {
+      console.log("Received message:", data.message, "from", data.name);
+    });
+ 
 
   return (
     <div className="chat-room">
       <div id="wlc"></div>
       <div id="joinedMessage"></div>
-{/*       <form className="input-form" onSubmit={sendMessage}>
+      <form className="input-form" onChange={sendMessage}>
         <input value={input} onChange={(e) => setInput(e.target.value)} />
         <button type="submit">Send</button>
-      </form> */}
+      </form>
     </div>
   );
 };
