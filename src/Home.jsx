@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 const { io } = require("socket.io-client");
-const socket = io("http://192.168.29.212:3000/");
+const socket = io("http://192.168.29.18:5000");
 
 const Home = () => {
   const [room, setRoom] = useState("");

@@ -1,43 +1,48 @@
 import React, { useEffect, useState } from "react";
 const { io } = require("socket.io-client");
-const socket = io("http://192.168.29.212:3000/");
+const socket = io("http://192.168.29.18:5000");
 
-const ChatRoom = (props) => {
+const ChatRoom = () => {
   const [msgs, setMsgs] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState();
   const [input, setInput] = useState("");
 
   const room = window.localStorage.getItem("room");
   const username = window.localStorage.getItem("username");
 
-  socket.on("allUser", (data) => {
-    console.log(data);
-    setUsers(data);
-  });
-
-  useEffect(() => {
     socket.emit("joinRoom", username, room);
-  });
 
-  useEffect(() => {
-    socket.on("new message", (msg) => {
-      setMsgs([...msgs, msg]);
+    socket.on("message", (msg) => {
+      const messageContainer = document.getElementById("wlc");
+      messageContainer.innerHTML = msg.text;
+    })
+
+    socket.on("info", (msg) => {
+      const messageContainer = document.getElementById("joinedMessage");
+      messageContainer.innerHTML = msg.username + ' ' + msg.text;
+    })
+
+    socket.emit("getroominfo", room);
+
+    socket.on('allUser', (data) => {
+      console.log('allUser:', data);
     });
-  }, [msgs]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    socket.emit("new message", room, input, username, () => setMsgs(""));
-    setInput("");
-  };
+/*     const sendMessage = (e) => {
+      e.preventDefault();
+      socket.emit("new message", room, input, username);
+      setInput("");
+    };
+   */
 
   return (
     <div className="chat-room">
-      <div>Chatroom</div>
-      <form className="input-form" onSubmit={handleSubmit}>
+      <div id="wlc"></div>
+      <div id="joinedMessage"></div>
+{/*       <form className="input-form" onSubmit={sendMessage}>
         <input value={input} onChange={(e) => setInput(e.target.value)} />
         <button type="submit">Send</button>
-      </form>
+      </form> */}
     </div>
   );
 };
