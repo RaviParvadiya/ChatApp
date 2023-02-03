@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:900i');
 
 .main-home{
-    padding: 5% 10%;
+    /* padding: 5% 10%; */
+    /* background-image: url('/src/Res/home-buddies.svg');
+    background-size: cover;
+    height: 100vh; */
+
 }
 
 .scroll-hit{
+  position: absolute;
     font-size: 1rem;
     color: #498071;
     display: flex;
@@ -29,7 +34,7 @@
     font-weight: 600;
     color: #498071;
     min-height: 980px;
-    
+    padding: 5% 10%;
   }
 
   .wlcm-txt p{
@@ -242,8 +247,7 @@
 
   .page-2{
     min-height: 800px;
-    padding-top: 5%;
-
+    padding: 5% 10%;
   }
 
   .flexbox-p2{
@@ -255,19 +259,27 @@
     /* padding: 50%; */
   }
 
-  .img-login{
+  .img-login-home{
     position: absolute;
-    top: 20%;
+    top: 30%;
     left: 50%;
     transform: scaleX(-1);
     /* opacity: 0.5; */
   }
+  .img-login-k{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100vh;
+    transform: scaleX(-1);
+    opacity: 0.05;
+  }
   
-  .img-login-back{
+  /* .img-login-back{
     position:absolute;
-    top: 25%;
+    top: 30%;
     left: 100%;
     opacity: 0.03;
     height: 1000px;
-  }
+  } */
 
