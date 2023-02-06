@@ -1,0 +1,31 @@
+.sout-btn{
+    /* position: absolute; */
+      font-size: 1.3rem;
+      color: #498071;
+      display: flex;
+      background-color: #252525;
+      justify-content: flex-start;
+      flex-direction: row;
+      align-items: center;
+      border: solid #252525;
+      border-radius: 5px;
+      border: none;
+      min-width: 135px;
+      /* margin: 10px; */
+      padding: 10px;
+      /* padding-top: 25px; */
+      /* min-width: 150px; */
+      /* max-width: fit-content; */
+      /* max-height: 40px; */
+      /* min-height: 50px; */
+      /* padding: 0 2%; */
+      box-shadow: 3px 3px 5px #252525;
+  }
+  .sout-btn:hover{
+      cursor: pointer;
+  
+  }
+
+  .sout-span{
+    padding-right: 10px;
+  }

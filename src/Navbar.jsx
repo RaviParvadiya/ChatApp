@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react'
 import "./Styles/Navbar.css"
 import { Link } from 'react-router-dom'
-
-
-    
+import { FaSignOutAlt } from "react-icons/fa";
+import SignOut from './SignOut/SignOut';
 
 
 const Navbar = () => {
@@ -24,6 +23,9 @@ const Navbar = () => {
         };
       }, []);
 
+      
+      
+
   return (
     <div className="navbar">
     <div className="navbar-content">
@@ -32,6 +34,7 @@ const Navbar = () => {
         <Link className='nav-link' to='/home'>Home</Link>
         <Link className='nav-link' to='/home'>About</Link>
         <Link className='nav-link' to='/home'>Contact</Link>
+        <SignOut className='nav-link'></SignOut>
       </ul>
     </div>
   </div>
