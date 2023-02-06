@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 const { io } = require("socket.io-client");
-const socket = io("http://192.168.43.246:5000");
+const socket = io("https://chat-server-vo3q.onrender.com/");
 
 const ChatRoom = () => {
   const [msgs, setMsgs] = useState([]);
