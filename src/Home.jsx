@@ -111,9 +111,9 @@ const Home = () => {
                   value={selectedRoom}
                   onChange={(e) => setSelectedRoom(e.target.value)}
                 >
-                  <option value={null}>Select an option</option>
+                  <option className="drp-dwn-option" value={null}>Select an option</option>
                   {rooms.map((room) => (
-                    <option key={room._id} value={room.roomName}>
+                    <option className="drp-dwn-option" key={room._id} value={room.roomName}>
                       {room.roomName}
                     </option>
                   ))}

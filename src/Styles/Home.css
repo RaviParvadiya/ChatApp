@@ -21,13 +21,7 @@ body::-webkit-scrollbar-corner {
 background-color: #f5f5f500;
 }
 
-.main-home{
-    /* padding: 5% 10%; */
-    /* background-image: url('/src/Res/home-buddies.svg');
-    background-size: cover;
-    height: 100vh; */
 
-}
 
 .scroll-hit{
   position: absolute;
@@ -287,9 +281,9 @@ background-color: #f5f5f500;
     top: 30%;
     left: 50%;
     transform: scaleX(-1);
-    /* opacity: 0.5; */
-    
+    /* opacity: 0.5;*/
   }
+
   .img-login-k{
     position: absolute;
     top: 0%;
@@ -306,3 +300,19 @@ background-color: #f5f5f500;
     opacity: 0.03;
     height: 1000px;
   } */
+
+  .drp-dwn-option{
+    display: flex;
+    padding: 5px 20px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #559661;
+    background: #B3ECBD;
+    transition: 1s;
+    box-shadow: 3px 3px 10px #252525;
+    transform: skewX(-15deg);
+    margin-right: 10px;
+    min-width: 350px;
+    border: solid 2px #252525;    
+  }
