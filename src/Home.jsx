@@ -6,6 +6,7 @@ import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
 import landImg from "./Res/home-buddies.svg"
 import Navbar from "./Navbar";
+import SignOut from "./SignOut/SignOut";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.18:5000/");
