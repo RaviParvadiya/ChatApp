@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import "./Styles/Navbar.css"
 import { Link } from 'react-router-dom'
-import { FaSignOutAlt } from "react-icons/fa";
 import SignOut from './SignOut/SignOut';
 
 
