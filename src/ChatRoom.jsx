@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.18:5000/");
 
@@ -8,10 +9,10 @@ const ChatRoom = () => {
   const [input, setInput] = useState("");
 
   const room = window.localStorage.getItem("room");
-  const username = window.localStorage.getItem("username");
+  // const username = window.localStorage.getItem("username");
 
   useEffect(() => {
-    socket.emit("joinRoom", username, room);
+    socket.emit("joinRoom", room);
 
     socket.on("message", (msg) => {
       const messageContainer = document.getElementById("wlc");
@@ -37,6 +38,7 @@ const ChatRoom = () => {
 
     return () => {
       socket.off("new message");
+      socket.off("roomname");
     };
   });
 
