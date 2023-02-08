@@ -1,17 +1,17 @@
 .sout-btn{
     /* position: absolute; */
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #498071;
       display: flex;
       background-color: #252525;
-      justify-content: flex-start;
+      justify-content: center;
       flex-direction: row;
       align-items: center;
       border: solid #252525;
       border-radius: 5px;
       border: none;
       min-width: 135px;
-      /* margin: 10px; */
+      min-height: 45px;
       padding: 10px;
       /* padding-top: 25px; */
       /* min-width: 150px; */
@@ -19,11 +19,17 @@
       /* max-height: 40px; */
       /* min-height: 50px; */
       /* padding: 0 2%; */
-      box-shadow: 3px 3px 5px #252525;
+      box-shadow: 0px 0px 5px #252525;
+      transition: 0.5s ease-in-out;
+      outline: none;
   }
+
   .sout-btn:hover{
-      cursor: pointer;
-  
+    background-color: #252525;
+    color: #99FED3 ;
+    box-shadow: 0px 0px 25px #1deb68;
+    border: none;
+    cursor: pointer;
   }
 
   .sout-span{

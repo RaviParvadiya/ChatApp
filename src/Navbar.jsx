@@ -6,6 +6,9 @@ import SignOut from './SignOut/SignOut';
 
 const Navbar = () => {
 
+
+    
+
     useEffect(() => {
         const handleScroll = () => {
           const navbar = document.querySelector('.navbar');
@@ -28,11 +31,11 @@ const Navbar = () => {
   return (
     <div className="navbar">
     <div className="navbar-content">
-      <div className="logo">AR<span className='logo-nav'>é</span>NA</div>
+      <div  onClick={() => window.location.replace("/home")} className="logo">AR<span className='logo-nav'>é</span>NA</div>
       <ul className="nav-links">
-        <Link className='nav-link' to='/home'>Home</Link>
-        <Link className='nav-link' to='/home'>About</Link>
-        <Link className='nav-link' to='/home'>Contact</Link>
+        <Link className='nav-link nav-css' to='/home'>Home</Link>
+        <Link className='nav-link nav-css' to='/home'>About</Link>
+        <Link className='nav-link nav-css' to='/home'>Contact</Link>
         <SignOut className='nav-link'></SignOut>
       </ul>
     </div>
