@@ -4,6 +4,7 @@ import API from "./api/API";
 import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
 import "./Styles/Login.css";
 import logo from "./Res/login-auth.svg";
+import useAuth from "./auth/useAuth";
 
 // framer Motion
 
@@ -18,13 +19,11 @@ const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    if (token !== null) {
-      socket.auth = { token: token };
-      socket.connect();
-    }
-  });
+    localStorage.clear();
+  }, []); 
 
+  useAuth(socket);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Send a request to the server to verify the user's credentials
@@ -42,6 +41,8 @@ const Login = () => {
       console.log(error);
     }
   };
+
+
 
   if (isLoggedIn) {
     return <Navigate to="/home" />;

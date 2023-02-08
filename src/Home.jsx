@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import "./Styles/Home.css";
 import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
@@ -15,13 +15,21 @@ const Home = () => {
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState("");
 
-  const token = window.localStorage.getItem("token");
-  const decoded = jwt_decode(token);
+  // const token = window.localStorage.getItem("token");
+  // const decoded = jwt_decode(token);
 
   const navigate = useNavigate();
 
   window.localStorage.setItem("room", selectedRoom);
   // window.localStorage.setItem("username", decoded.username);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem("token");
+    if (token !== null) {
+      socket.auth = { token: token };
+      socket.connect();
+    }
+  }, []);
 
 
   socket.on("connect", () => {
@@ -39,7 +47,8 @@ const Home = () => {
 
   const createRoom = async (e) => {
     e.preventDefault();
-    socket.emit("joinRoom", decoded.username, room);
+    socket.emit("joinRoom", room);
+    console.log("Room created", room)
     setRoom("");
   };
 

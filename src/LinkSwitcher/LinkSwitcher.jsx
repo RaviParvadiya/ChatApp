@@ -14,7 +14,7 @@ const LinkSwitcher = ({ children }) => {
             transition={{ duration: 0.7 }}
         >
             {children}
-            <motion.circle
+            <motion.div
   initial={{ pathLength: 0 }}
   animate={{ pathLength: 1 }}
 />

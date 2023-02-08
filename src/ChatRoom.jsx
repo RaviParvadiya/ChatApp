@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import useAuth from "./auth/useAuth";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.18:5000/");
 
 const ChatRoom = () => {
   const [msgs, setMsgs] = useState([]);
-  const [users, setUsers] = useState();
+  // const [users, setUsers] = useState();
   const [input, setInput] = useState("");
 
   const room = window.localStorage.getItem("room");
   // const username = window.localStorage.getItem("username");
+
+  useAuth(socket);
 
   useEffect(() => {
     socket.emit("joinRoom", room);
