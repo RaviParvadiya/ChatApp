@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "./auth/useAuth";
+import Message from "./Message/Message";
+import jwt_decode from "jwt-decode";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.18:5000/");
@@ -51,15 +53,24 @@ const ChatRoom = () => {
     setInput("");
   };
 
+  const token = window.localStorage.getItem("token");
+  const decoded = jwt_decode(token);
+
   return (
     <div className="chat-room">
       <div id="wlc"></div>
       <div id="joinedMessage"></div>
       {msgs.map((m) => (
         <div key={Date.now() + Math.random()}>
+          {/* <p>{m.name}</p>
           <p>{m.message}</p>
-          <p>sent by {m.name}</p>
-          <p>By {m.time}</p>
+          <p>{m.time}</p> */}
+          <Message
+            user={m.name}
+            message={m.message}
+            time={m.time}
+            name={decoded.username}
+          />
         </div>
       ))}
       <form className="input-form" onSubmit={sendMessage}>
