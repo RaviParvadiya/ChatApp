@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import "./Styles/Navbar.css"
 import { Link } from 'react-router-dom'
-import SignOut from './SignOut/SignOut';
+import SignOut from './Pages/SignOut/SignOut';
 
 
 const Navbar = () => {

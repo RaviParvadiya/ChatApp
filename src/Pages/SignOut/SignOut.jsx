@@ -1,5 +1,5 @@
 import React from 'react'
-import "../SignOut/SignOut.css"
+import "./SignOut.css"
 import { FaSignOutAlt } from "react-icons/fa";
 
 
