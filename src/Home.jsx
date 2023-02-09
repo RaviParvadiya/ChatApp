@@ -31,7 +31,6 @@ const Home = () => {
     }
   }, []);
 
-
   socket.on("connect", () => {
     console.log(socket.id);
   });
@@ -48,7 +47,7 @@ const Home = () => {
   const createRoom = async (e) => {
     e.preventDefault();
     socket.emit("joinRoom", room);
-    console.log("Room created", room)
+    console.log("Room created", room);
     setRoom("");
   };
 
