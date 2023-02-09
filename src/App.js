@@ -15,10 +15,15 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
       <Route path="/" element={<Login />} />
         <Route element={<PrivateRoute />} >
           <Route element={<Home />} path='/home' />
           <Route element={<ChatRoom />} path='/home/chat-room' />
+          {/* <Route />
+          <Routes />
+           */}
+          <Route  />
         </Route>
       <Route path="/signup" element={<SignUp />} />
     </Routes>
