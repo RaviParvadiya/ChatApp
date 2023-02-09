@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 // import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import "./Styles/Home.css";
-import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
+import "../../Styles/Home.css";
+import LinkSwitcher from "../../Components/LinkSwitcher/LinkSwitcher";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
-import landImg from "./Res/home-buddies.svg";
-import Navbar from "./Navbar";
+import landImg from "../../Res/home-buddies.svg";
+import Navbar from "../../Navbar";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.18:5000/");
@@ -42,7 +42,7 @@ const Home = () => {
     return () => {
       socket.off("allRooms");
     };
-  });
+  },[]);
 
   const createRoom = async (e) => {
     e.preventDefault();
@@ -53,7 +53,6 @@ const Home = () => {
 
   const joinRoom = (e) => {
     e.preventDefault();
-    // socket.emit("joinRoom", decoded.username, selectedRoom);
     navigate("chat-room");
   };
 
@@ -131,7 +130,6 @@ const Home = () => {
                           <option
                             className="drp-dwn-option"
                             key={room._id}
-                            value={room.roomName}
                           >
                             {room.roomName}
                           </option>

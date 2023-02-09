@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import API from "./api/API";
-import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
-import "./Styles/SignUp.css"
-import signup from "./Res/wlcm-cat.svg"
+import API from "../../api/API";
+import LinkSwitcher from "../../Components/LinkSwitcher/LinkSwitcher";
+import "../../Styles/SignUp.css"
+import signup from "../../Res/wlcm-cat.svg"
 
 // Framer Motion
 

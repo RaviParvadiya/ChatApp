@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import API from "./api/API";
-import LinkSwitcher from "./LinkSwitcher/LinkSwitcher";
-import "./Styles/Login.css";
-import logo from "./Res/login-auth.svg";
-import useAuth from "./auth/useAuth";
+import API from "../../api/API";
+import LinkSwitcher from "../../Components/LinkSwitcher/LinkSwitcher";
+import "../../Styles/Login.css";
+import logo from "../../Res/login-auth.svg";
+import useAuth from "../../auth/useAuth";
 
 // framer Motion
 

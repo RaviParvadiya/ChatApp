@@ -1,10 +1,10 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import ChatRoom from "./ChatRoom";
-import ProtectedRoute from "./ProtectedRoute";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/SignIn/Login";
+import SignUp from "./Pages/Registration/SignUp";
+import ChatRoom from "./Pages/Chat/ChatRoom";
+import ProtectedRoute from "./Components/PrivateRoute/ProtectedRoute";
 import useAuth from "./auth/useAuth";
 
 const { io } = require("socket.io-client");
