@@ -4,8 +4,8 @@ import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import ChatRoom from "./ChatRoom";
-import ProtectedRoute from "./ProtectedRoute";
 import useAuth from "./auth/useAuth";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const { io } = require("socket.io-client");
 const socket = io("http://192.168.29.18:5000/");
@@ -16,11 +16,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/" element={<ProtectedRoute />}>
-        <Route path="*" element={<Login />} />
-        <Route path="home" element={<Home />} />
-        <Route path="/home/chat-room" element={<ChatRoom />} />
-      </Route>
+        <Route element={<PrivateRoute />} >
+          <Route element={<Home />} path='/home' />
+          <Route element={<ChatRoom />} path='/home/chat-room' />
+        </Route>
       <Route path="/signup" element={<SignUp />} />
     </Routes>
   );
