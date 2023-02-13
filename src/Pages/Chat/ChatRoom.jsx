@@ -35,7 +35,7 @@ const ChatRoom = () => {
 
     socket.emit("getroominfo", room);
 
-/*     socket.on("allUser", (data) => {
+    /*     socket.on("allUser", (data) => {
       const names = data.map((user) => user.username);
       // console.log('allUser:', names);
     }); */
@@ -47,7 +47,6 @@ const ChatRoom = () => {
 
     return () => {
       socket.off("new message");
-      socket.off("roomname");
     };
   });
 
@@ -57,18 +56,16 @@ const ChatRoom = () => {
     setInput("");
   };
 
-  const back = navigate(-1);
+  const leaveRoom = () => {
+    socket.emit("leaveRoom");
+    socket.disconnect();
+    navigate(-1);
+  };
 
-  if(back) {
-
-  socket.emit('disconnect');
-  socket.on("dissconnectmessage", (message) => {
+  socket.on("leavemessage", (message) => {
     const messageElement = document.getElementById("leave-message");
-    messageElement.innerText = message;
-    console.log(message);
-    console.log('msg', messageElement);
+    messageElement.innerHTML = message.username + " " + message.text;
   });
-}
 
   const token = window.localStorage.getItem("token");
   const decoded = jwt_decode(token);
@@ -92,6 +89,8 @@ const ChatRoom = () => {
         <button type="submit">Send</button>
       </form> */}
       <Input message={input} setMessage={setInput} sendMessage={sendMessage} />
+      <div id="leave-message"></div>
+      <button onClick={leaveRoom}>Leave</button>
     </div>
   );
 };
