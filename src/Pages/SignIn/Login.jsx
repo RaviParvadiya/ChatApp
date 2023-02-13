@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import API from "../../api/API";
+import API, { APIENDPOINT } from "../../api/API";
 import LinkSwitcher from "../../Components/LinkSwitcher/LinkSwitcher";
 import "../../Styles/Login.css";
 import logo from "../../Res/login-auth.svg";
@@ -11,7 +11,7 @@ import useAuth from "../../auth/useAuth";
 // import "./Res/"
 
 const { io } = require("socket.io-client");
-const socket = io("http://192.168.29.18:5000/");
+const socket = io(APIENDPOINT);
 
 const Login = () => {
   const [username, setUsername] = useState("");

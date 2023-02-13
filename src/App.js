@@ -6,9 +6,10 @@ import SignUp from "./Pages/Registration/SignUp";
 import ChatRoom from "./Pages/Chat/ChatRoom";
 import ProtectedRoute from "./Components/PrivateRoute/ProtectedRoute";
 import useAuth from "./auth/useAuth";
+import { APIENDPOINT } from "./api/API";
 
 const { io } = require("socket.io-client");
-const socket = io("http://192.168.29.18:5000/");
+const socket = io(APIENDPOINT);
 
 function App() {
   useAuth(socket);

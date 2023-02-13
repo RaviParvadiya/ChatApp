@@ -6,9 +6,10 @@ import LinkSwitcher from "../../Components/LinkSwitcher/LinkSwitcher";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
 import landImg from "../../Res/home-buddies.svg";
 import Navbar from "../../Navbar";
+import { APIENDPOINT } from "../../api/API";
 
 const { io } = require("socket.io-client");
-const socket = io("http://192.168.29.18:5000/");
+const socket = io(APIENDPOINT);
 
 const Home = () => {
   const [room, setRoom] = useState("");

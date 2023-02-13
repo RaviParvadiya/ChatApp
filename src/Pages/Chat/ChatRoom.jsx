@@ -4,9 +4,10 @@ import Message from "../../Components/Message/Message";
 import jwt_decode from "jwt-decode";
 import Input from "../../Components/Input/Input";
 import { useNavigate } from "react-router-dom";
+import { APIENDPOINT } from "../../api/API";
 
 const { io } = require("socket.io-client");
-const socket = io("http://192.168.29.18:5000/");
+const socket = io(APIENDPOINT);
 
 const ChatRoom = () => {
   const [msgs, setMsgs] = useState([]);
