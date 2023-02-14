@@ -13,11 +13,9 @@ const ChatRoom = () => {
   const [msgs, setMsgs] = useState([]);
   // const [users, setUsers] = useState();
   const [input, setInput] = useState("");
-
   const navigate = useNavigate();
 
   const room = window.localStorage.getItem("room");
-  // const username = window.localStorage.getItem("username");
 
   useAuth(socket);
 
@@ -85,10 +83,6 @@ const ChatRoom = () => {
           />
         </div>
       ))}
-      {/* <form className="input-form" onSubmit={sendMessage}>
-        <input placeholder="Type a message..." value={input} onChange={(e) => setInput(e.target.value)} />
-        <button type="submit">Send</button>
-      </form> */}
       <Input message={input} setMessage={setInput} sendMessage={sendMessage} />
       <div id="leave-message"></div>
       <button onClick={leaveRoom}>Leave</button>
