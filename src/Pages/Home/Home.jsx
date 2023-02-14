@@ -40,12 +40,9 @@ const Home = () => {
     socket.on("allRooms", (data) => {
       setRooms(data);
     });
-    return () => {
-      socket.off("allRooms");
-    };
   },[]);
 
-  const createRoom = async (e) => {
+  const createRoom = (e) => {
     e.preventDefault();
     socket.emit("joinRoom", room);
     console.log("Room created", room);
@@ -124,7 +121,7 @@ const Home = () => {
                         value={selectedRoom}
                         onChange={(e) => setSelectedRoom(e.target.value)}
                       >
-                        <option className="drp-dwn-option" value={null}>
+                        <option className="drp-dwn-dft" value={null} hidden>
                           Select an option
                         </option>
                         {rooms.map((room) => (
@@ -137,7 +134,7 @@ const Home = () => {
                         ))}
                       </select>
                     </label>
-                    <button className="cta-home-btns" type="submit">
+                    <button className="cta-home-btns" type="submit" disabled={!selectedRoom}>
                       Join Room
                     </button>
                   </div>

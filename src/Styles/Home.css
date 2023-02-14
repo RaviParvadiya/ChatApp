@@ -316,3 +316,8 @@ background-color: #f5f5f500;
     min-width: 350px;
     border: solid 2px #252525;    
   }
+
+    .drp-dwn-dft option[value="null"] {
+    color: gray;
+    pointer-events: none;
+  }
