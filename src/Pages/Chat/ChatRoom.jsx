@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import Input from "../../Components/Input/Input";
 import { useNavigate } from "react-router-dom";
 import { APIENDPOINT } from "../../api/API";
+import "./ChatRoom.css"
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -70,6 +71,7 @@ const ChatRoom = () => {
   const decoded = jwt_decode(token);
 
   return (
+    <div className="chat-room-main">
     <div className="chat-room">
       <div id="wlc"></div>
       <div id="joinedMessage"></div>
@@ -83,10 +85,22 @@ const ChatRoom = () => {
           />
         </div>
       ))}
+<<<<<<< HEAD
       <Input message={input} setMessage={setInput} sendMessage={sendMessage} />
+=======
+      {/* <form className="input-form" onSubmit={sendMessage}>
+        <input placeholder="Type a message..." value={input} onChange={(e) => setInput(e.target.value)} />
+        <button type="submit">Send</button>
+      </form> */}
+>>>>>>> 08f41d8f1a30ef53d75c1bb406fc2aa036f055a7
       <div id="leave-message"></div>
-      <button onClick={leaveRoom}>Leave</button>
+      <Input className='cta-ip-chatroom' message={input} setMessage={setInput} sendMessage={sendMessage} />
+      
+      <div className="leave-flex">
+      <button className="leave-btn" onClick={leaveRoom}>Leave</button>
+      </div>
     </div>
+    </div> 
   );
 };
 

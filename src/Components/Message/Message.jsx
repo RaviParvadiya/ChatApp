@@ -1,4 +1,5 @@
 import React from "react";
+import "./Message.css"
 
 const Message = ({ user, message, time, name }) => {
   let isSentByCurrentUser = false;
@@ -9,17 +10,23 @@ const Message = ({ user, message, time, name }) => {
   }
 
   return (
-    <div>
+    <div className="msg-div">
       {isSentByCurrentUser ? (
-        <div>
-          <p>{message}</p>
-          <p>{time}</p>
+        <div className="msg-sender-box">
+        <div className="msg-curr-user">
+          <p className="msg-sender">{message}</p>
+          <p className="msg-time">{time}</p>
+        </div>
         </div>
       ) : (
-        <div>
-          <p>{user}</p>
-          <p>{message}</p>
-          <p>{time}</p>
+        <div className="">
+          <p className="user-rec">{user}</p>
+          <div className="msg-rec-box">
+          <div className="msg-receive">
+          <p className="msg-rec">{message}</p>
+          <p className="msg-time">{time}</p>
+          </div>
+          </div>
         </div>
       )}
     </div>
