@@ -85,14 +85,7 @@ const ChatRoom = () => {
           />
         </div>
       ))}
-<<<<<<< HEAD
       <Input message={input} setMessage={setInput} sendMessage={sendMessage} />
-=======
-      {/* <form className="input-form" onSubmit={sendMessage}>
-        <input placeholder="Type a message..." value={input} onChange={(e) => setInput(e.target.value)} />
-        <button type="submit">Send</button>
-      </form> */}
->>>>>>> 08f41d8f1a30ef53d75c1bb406fc2aa036f055a7
       <div id="leave-message"></div>
       <Input className='cta-ip-chatroom' message={input} setMessage={setInput} sendMessage={sendMessage} />
       
