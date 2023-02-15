@@ -151,9 +151,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  /* .head-login {
+  .head-login {
     font-size: 2.5rem;
-  } */
+  }
   .login-box {
     left: 50%;
     /* padding: 30px; */
@@ -182,7 +182,7 @@ body {
 
 @media screen and (max-width: 400px) {
   .head-login {
-    font-size: 1rem;
+    font-size: 2rem;
   }
   .login-box {
     left: 50%;
