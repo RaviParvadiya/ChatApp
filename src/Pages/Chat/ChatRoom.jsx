@@ -142,6 +142,16 @@ useEffect(() => {
             Leave
           </button>
         </div>
+<<<<<<< HEAD
+=======
+      ))}
+      <Input message={input} setMessage={setInput} sendMessage={sendMessage} />
+      <div id="leave-message"></div>
+      <Input className='cta-ip-chatroom' message={input} setMessage={setInput} sendMessage={sendMessage} />
+      
+      <div className="leave-flex">
+      <button className="leave-btn" onClick={leaveRoom}>Leave</button>
+>>>>>>> f8d5966f1cfb79a877a46d8e002759c463f756df
       </div>
     </div>
   );

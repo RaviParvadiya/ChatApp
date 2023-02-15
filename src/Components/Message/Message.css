@@ -19,7 +19,7 @@
     margin: 2px 0 0 0 ;
     flex-direction: column;
     align-self: flex-end;
-    align-items: flex-start;
+    align-items: flex-end;
 
 
 
@@ -55,8 +55,9 @@
 .msg-time{
     padding: 0;
     margin: 0;
-    font-size: 0.5rem;
+    font-size: 0.3rem;
     color: #2525257e;
+    opacity: 0.7;
 }
 
 .msg-receive{

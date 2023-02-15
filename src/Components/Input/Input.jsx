@@ -14,7 +14,7 @@ const Input = ({ message, setMessage, sendMessage }) => {
           onChange={(e) => setMessage(e.target.value)}
         />
         
-        <button className="chatroom-send" type="submit">Send</button>
+        <button className="chatroom-send" onClick={window.scrollTo(0, document.body.scrollHeight)} type="submit">Send</button>
         </div>
       </form>
     </div>

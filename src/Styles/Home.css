@@ -32,16 +32,21 @@ background-color: #f5f5f500;
     justify-content: flex-start;
     flex-direction: row;
     align-items: center;
-    border: solid #252525;
+    /* border: solid #252525; */
     border-radius: 5px;
     max-width: fit-content;
     max-height: 40px;
     padding: 0 2%;
-    box-shadow: 3px 3px 5px #252525;
+    box-shadow: 0px 0px 5px #252525;
+    transition: 0.5s ease-in-out;
+
 }
 .scroll-hit:hover{
-    cursor: pointer;
-
+  background-color: #252525;
+  color: #99FED3 ;
+  box-shadow: 0px 0px 25px #1deb68;
+  /* border: none; */
+  cursor: pointer;
 }
 
 .wlcm-txt{
@@ -189,12 +194,11 @@ background-color: #f5f5f500;
     /* margin: 30px 0 30px 0; */
     /* margin-top: ; */
     /* padding: 2rem 0 2rem 0; */
-    /* border: solid #252525; */
+    border: solid 2px #252525;
   }
   
   .cta-home-btns:focus {
     outline: none;
-  
   }
 
   .cta-home-btns:hover {
