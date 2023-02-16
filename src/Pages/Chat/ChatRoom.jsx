@@ -112,7 +112,7 @@ useEffect(() => {
         <div className="chats" ref={chatsRef}></div>
         {msgs.joinmessage.map((msg, index) => (
           <div key={`join-${index}`}>
-            <p>{msg.username} {msg.text}</p>
+            <p id='wlc'>{msg.username} {msg.text}</p>
           </div>
         ))}
         {msgs.messages.map((m) => (
@@ -127,7 +127,7 @@ useEffect(() => {
         ))}
         {msgs.leavemessage.map((msg, index) => (
           <div key={`leave-${index}`}>
-            <p>{msg.username} {msg.text}</p>
+            <p id='wlc'>{msg.username} {msg.text}</p>
           </div>
         ))}
         <Input
