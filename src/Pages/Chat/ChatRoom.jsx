@@ -99,9 +99,6 @@ const ChatRoom = () => {
     };
   });
 
-  console.log(msgs);
-  console.log("user", users);
-
   return (
     <div className="chat-room-main">
       <div className="chat-room">
@@ -141,7 +138,6 @@ const ChatRoom = () => {
           setMessage={setInput}
           sendMessage={sendMessage}
         />
-
         <div className="leave-flex">
           <button className="leave-btn" onClick={leaveRoom}>
             Leave
