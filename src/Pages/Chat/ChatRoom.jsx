@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../auth/useAuth";
 import Message from "../../Components/Message/Message";
 import jwt_decode from "jwt-decode";
@@ -16,24 +16,16 @@ const ChatRoom = () => {
     messages: [],
     leavemessage: [],
   });
-  // const [users, setUsers] = useState();
+  const [users, setUsers] = useState([]);
   const [input, setInput] = useState("");
   const navigate = useNavigate();
-  const chatsRef = useRef(null);
 
   const room = window.localStorage.getItem("room");
 
-  useAuth(socket);
+  const token = window.localStorage.getItem("token");
+  const decoded = jwt_decode(token);
 
-  // const userJoinLeft = (name, status) => {
-  //   let div = document.createElement("div");
-  //   div.className = "user-join";
-  //   let content = `<p><b>${name}</b> ${status}</p>`;
-  //   div.innerHTML = content;
-  //   let chats = chatsRef.current;
-  //   chats.appendChild(div);
-  //   console.log("ref", chats);
-  // };
+  useAuth(socket);
 
   useEffect(() => {
     socket.emit("joinRoom", room);
@@ -42,7 +34,6 @@ const ChatRoom = () => {
       const messageContainer = document.getElementById("wlc");
       messageContainer.innerHTML = msg.username + " " + msg.text;
     });
-
 
     socket.emit("getroominfo", room);
 
@@ -60,15 +51,22 @@ const ChatRoom = () => {
     };
   }, [room]);
 
+  socket.on("allUser", (data) => {
+    const filteredData = data.filter((obj) => obj.username !== decoded.username);
+    setUsers(filteredData);
+  });
+
   useEffect(() => {
     socket.on("info", (msg) => {
       // console.log("info:", msg.username, msg.text, msg);
       setMsgs((prevMsgs) => {
-        const exists = prevMsgs.joinmessage.some((m) => m.username === msg.username);
+        const exists = prevMsgs.joinmessage.some(
+          (m) => m.username === msg.username
+        );
         if (!exists) {
           return {
             ...prevMsgs,
-            joinmessage: [...prevMsgs.joinmessage, msg]
+            joinmessage: [...prevMsgs.joinmessage, msg],
           };
         }
         return prevMsgs;
@@ -87,32 +85,37 @@ const ChatRoom = () => {
     socket.disconnect();
     navigate(-1);
   };
-useEffect(() => {
-  socket.on("leavemessage", (message) => {
-    // console.log("leave:", message.username, message.text);
-    setMsgs((prevMsgs) => ({
-      ...prevMsgs,
-      leavemessage: [...prevMsgs.leavemessage, message],
-    }));
+
+  useEffect(() => {
+    socket.on("leavemessage", (message) => {
+      // console.log("leave:", message.username, message.text);
+      setMsgs((prevMsgs) => ({
+        ...prevMsgs,
+        leavemessage: [...prevMsgs.leavemessage, message],
+      }));
+    });
+    return () => {
+      socket.off("leavemessage");
+    };
   });
-  return () => {
-    socket.off("leavemessage");
-  };
-})
 
   console.log(msgs);
-
-  const token = window.localStorage.getItem("token");
-  const decoded = jwt_decode(token);
+  console.log("user", users);
 
   return (
     <div className="chat-room-main">
       <div className="chat-room">
+        {users.map((u) => (
+          <div key={u.id}>
+            <p>{u.username}</p>
+          </div>
+        ))}
         <div id="wlc"></div>
-        <div className="chats" ref={chatsRef}></div>
         {msgs.joinmessage.map((msg, index) => (
           <div key={`join-${index}`}>
-            <p>{msg.username} {msg.text}</p>
+            <p id="joinedMessage">
+              {msg.username} {msg.text}
+            </p>
           </div>
         ))}
         {msgs.messages.map((m) => (
@@ -127,7 +130,9 @@ useEffect(() => {
         ))}
         {msgs.leavemessage.map((msg, index) => (
           <div key={`leave-${index}`}>
-            <p>{msg.username} {msg.text}</p>
+            <p id="leave-message">
+              {msg.username} {msg.text}
+            </p>
           </div>
         ))}
         <Input
@@ -142,16 +147,6 @@ useEffect(() => {
             Leave
           </button>
         </div>
-<<<<<<< HEAD
-=======
-      ))}
-      <Input message={input} setMessage={setInput} sendMessage={sendMessage} />
-      <div id="leave-message"></div>
-      <Input className='cta-ip-chatroom' message={input} setMessage={setInput} sendMessage={sendMessage} />
-      
-      <div className="leave-flex">
-      <button className="leave-btn" onClick={leaveRoom}>Leave</button>
->>>>>>> f8d5966f1cfb79a877a46d8e002759c463f756df
       </div>
     </div>
   );
