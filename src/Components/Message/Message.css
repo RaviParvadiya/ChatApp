@@ -16,10 +16,12 @@
     /* padding: 10px 10px 5px 10px ; */
     border-radius: 50px;
     display: flex;
-    margin: 2px 0 0 0 ;
+    margin: 2px 0 0 30% ;
     flex-direction: column;
     align-self: flex-end;
     align-items: flex-end;
+    word-wrap: break-word;
+    
 
 
 
@@ -91,3 +93,41 @@
      flex-direction: column;
      align-items: flex-start;
 }
+
+/* 
+@media screen and (max-width:1200px){
+    .msg-curr-user{
+        margin: 2px 0 0 200px;
+        word-wrap: break-word;
+    }
+
+}
+@media screen and (max-width:992px){
+    .msg-curr-user{
+        margin: 2px 0 0 100px;
+        word-wrap: break-word;
+    }
+
+}
+@media screen and (max-width:768px){
+    .msg-curr-user{
+        margin: 2px 0 0 70px;
+        word-wrap: break-word;
+    }
+
+}
+@media screen and (max-width:576px){
+    .msg-curr-user{
+        margin: 2px 0 0 60px;
+        word-wrap: break-word;
+    }
+
+}
+
+@media screen and (max-width:400px){
+    .msg-curr-user{
+        margin: 2px 0 0 50px;
+        word-wrap: break-word;
+    }
+    
+} */
