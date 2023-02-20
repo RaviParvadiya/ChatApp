@@ -111,9 +111,7 @@ const ChatRoom = () => {
         <div id="wlc"></div>
         {msgs.joinmessage.map((msg, index) => (
           <div key={`join-${index}`}>
-            <p id="joinedMessage">
-              {msg.username} {msg.text}
-            </p>
+            <p id='wlc'>{msg.username} {msg.text}</p>
           </div>
         ))}
         {msgs.messages.map((m) => (
@@ -128,9 +126,7 @@ const ChatRoom = () => {
         ))}
         {msgs.leavemessage.map((msg, index) => (
           <div key={`leave-${index}`}>
-            <p id="leave-message">
-              {msg.username} {msg.text}
-            </p>
+            <p id='wlc'>{msg.username} {msg.text}</p>
           </div>
         ))}
         <Input

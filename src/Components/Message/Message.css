@@ -12,7 +12,7 @@
 
 .msg-curr-user{
     /* border: solid 1px transparent; */
-    box-shadow: 1px 1px 5px #2525256e;
+    /* box-shadow: 1px 1px 5px #2525256e; */
     /* padding: 10px 10px 5px 10px ; */
     border-radius: 50px;
     display: flex;
@@ -33,7 +33,7 @@
     color: #559661;
     background: #B3ECBD;
     transition: 1s;
-    box-shadow: 3px 3px 5px #252525;
+    box-shadow: 3px 3px 10px #252525d0;
     transform: skewX(-0deg);
     margin-right: 10px;
     border: solid 2px #252525;
@@ -64,9 +64,8 @@
 
 .msg-receive{
     /* border: solid 1px transparent ; */
-    box-shadow: -1px 1px 5px #2525256e;
-    margin-bottom: 10px;
-    /* padding: 10px 10px 5px 10px ; */
+    /* box-shadow: -1px 1px 5px #2525256e; */
+    margin: 0 30% 10px 2px;    /* padding: 10px 10px 5px 10px ; */
     border-radius: 50px;
     display: flex;
     flex-direction: column;
@@ -79,9 +78,9 @@
     color: #559661;
     background: #B3ECBD;
     transition: 1s;
-    box-shadow: 3px 3px 5px #252525;
+    box-shadow: -3px 3px 10px #252525d0;
     transform: skewX(-0deg);
-    margin-right: 10px;
+    margin-left: 10px;
     border: solid 2px #252525;
 }
 
@@ -93,6 +92,121 @@
      flex-direction: column;
      align-items: flex-start;
 }
+
+ul{
+    padding: 0;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+.wrapper {
+    display: inline-flex;
+    list-style: none;
+  }
+
+
+.tooltip{
+    /* border: solid 2px #252525; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 100% ;
+    font-size: 1rem;
+    margin: 0;
+    /* border: rgb(51, 51, 51) solid; */
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+
+    /* background: #240774; */
+    /* box-shadow: -3px 3px 5px #ff2525;    */
+}
+
+.tooltip:hover{
+    /* opacity: 0; */
+    cursor: pointer;
+}
+
+.wrapper {
+    display: inline-flex;
+    list-style: none;
+  }
+
+
+  .single-char{
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+
+  .wrapper .icon {
+    position: relative;
+    font-weight: 600;
+    background: #000000d0;
+    color: #559661;
+    border-radius: 100%;
+    /* padding: 15px; */
+    /* margin-left: 5px; */
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.26);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(-0.55, 0.68, 1.55, 0.265);
+  }
+  
+  .wrapper .tooltip {
+    position: absolute;
+    top: 5px;
+    font-size: 14px;
+    background: #69d392;
+    color: #613232;
+    /* padding: 5px 8px; */
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(-0.55, 0.68, 1.55, 0.265);
+  }
+  
+  .wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #69d392;
+    left: 0px;
+    /* opacity: 0; */
+    /* left: 0%; */
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.5s cubic-bezier(-0.55, 0.68, 1.55, 0.265);
+  }
+  
+  .wrapper .icon:hover .tooltip {
+    left: 53px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  .wrapper .icon:hover span,
+  .wrapper .icon:hover .tooltip {
+    box-shadow: 0 0 10px #00000025;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.192);
+  }
+
+  
+
+/* .user-rec{
+    margin-left: 10px;
+    margin-bottom: 2px;
+} */
 
 /* 
 @media screen and (max-width:1200px){

@@ -20,13 +20,23 @@ const Message = ({ user, message, time, name }) => {
         </div>
       ) : (
         <div className="">
-          <p className="user-rec">{user}</p>
-          <div className="msg-rec-box">
-          <div className="msg-receive">
-          <p className="msg-rec">{message}</p>
-          <p className="msg-time">{time}</p>
+          <div className="user-rec">
+            <ul className="wrapper">
+              <li className="icon">
+                <span className="tooltip">{user.slice(0,1).toUpperCase() + user.slice(1).toLowerCase()}</span>
+                <span className="single-char">{user.slice(0,1).toUpperCase()}</span>
+              </li>
+            </ul>
+          {/* <p className="user"></p> */}
           </div>
-          </div>
+
+            <div className="msg-rec-box">
+              <div className="msg-receive">
+                <p className="msg-rec">{message}</p>
+                <p className="msg-time">{time}</p>
+              </div>
+
+            </div>
         </div>
       )}
     </div>
