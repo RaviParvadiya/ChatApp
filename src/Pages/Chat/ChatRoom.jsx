@@ -102,6 +102,7 @@ const ChatRoom = () => {
   return (
     <div className="chat-room-main">
       <div className="chat-room">
+        <div>You are entered in {room} chat</div>
         {users.map((u) => (
           <div key={u.id}>
             <p>{u.username}</p>

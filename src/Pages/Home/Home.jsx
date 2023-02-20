@@ -23,14 +23,21 @@ const Home = () => {
     if (token !== null) {
       socket.auth = { token: token };
       socket.connect();
+    } else {
+      navigate('/login');
     }
-  }, []);
+    socket.on("connect", () => {
+      console.log(socket.id);
+    });
+  }, [navigate]);
 
   useEffect(() => {
-    socket.on("allRooms", (data) => {
+    console.log('1',socket.emit("allRooms"));
+   console.log('2',socket.on("allRooms", (data) => {
+      console.log('rm', data);
       setRooms(data);
-    });
-  },[]);
+    }));
+  });
 
   const createRoom = (e) => {
     e.preventDefault();
