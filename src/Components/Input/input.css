@@ -63,7 +63,7 @@
     /* margin: 30px 0 30px 0; */
     /* margin-top: ; */
     /* padding: 2rem 0 2rem 0; */
-    /* border: solid #252525; */
+    border: solid #252525 2px;
   }
   
   .chatroom-send:focus {
