@@ -7,6 +7,9 @@ const useAuth = (socket) => {
       socket.auth = { token: token };
       socket.connect();
     }
+    return () => {
+      socket.close();
+    }
   }, [socket]);
 };
 

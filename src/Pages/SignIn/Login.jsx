@@ -20,10 +20,10 @@ const Login = () => {
 
   useEffect(() => {
     localStorage.clear();
-  }, []); 
+  }, []);
 
   useAuth(socket);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Send a request to the server to verify the user's credentials
@@ -38,11 +38,14 @@ const Login = () => {
 
       setIsLoggedIn(true);
     } catch (error) {
-      console.log(error);
+      // Display the error message to the user
+      if (error.response) {
+        alert(error.response.data.msg);
+      } else {
+        alert("An error occurred while logging in");
+      }
     }
   };
-
-
 
   if (isLoggedIn) {
     return <Navigate to="/home" />;

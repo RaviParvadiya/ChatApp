@@ -6,6 +6,7 @@ import { FaExternalLinkSquareAlt } from "react-icons/fa";
 import landImg from "../../Res/home-buddies.svg";
 import Navbar from "../../Navbar";
 import { APIENDPOINT } from "../../api/API";
+import useAuth from "../../auth/useAuth";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -18,23 +19,27 @@ const Home = () => {
 
   window.localStorage.setItem("room", selectedRoom);
 
-  useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    if (token !== null) {
-      socket.auth = { token: token };
-      socket.connect();
-    }
-  }, []);
+  useAuth(socket);
 
   useEffect(() => {
-    socket.on("allRooms", (data) => {
-      setRooms(data);
+    socket.on("connect", () => {
+      console.log(socket.id);
+      socket.emit("allRooms");
+      socket.on("allRooms", (data) => {
+        console.log("rm", data);
+        setRooms(data);
+      });
     });
-  },[]);
+/*     return () => {
+      socket.close();
+    } */
+  }, []);
 
   const createRoom = (e) => {
     e.preventDefault();
     socket.emit("joinRoom", room);
+    window.localStorage.setItem("room", room);
+    navigate("chat-room")
     setRoom("");
   };
 
@@ -114,16 +119,17 @@ const Home = () => {
                           Select an option
                         </option>
                         {rooms.map((room) => (
-                          <option
-                            className="drp-dwn-option"
-                            key={room._id}
-                          >
+                          <option className="drp-dwn-option" key={room._id}>
                             {room.roomName}
                           </option>
                         ))}
                       </select>
                     </label>
-                    <button className="cta-home-btns" type="submit" disabled={!selectedRoom}>
+                    <button
+                      className="cta-home-btns"
+                      type="submit"
+                      disabled={!selectedRoom}
+                    >
                       Join Room
                     </button>
                   </div>

@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import API from "../../api/API";
 import LinkSwitcher from "../../Components/LinkSwitcher/LinkSwitcher";
-import "../../Styles/SignUp.css"
-import signup from "../../Res/wlcm-cat.svg"
+import "../../Styles/SignUp.css";
+import signup from "../../Res/wlcm-cat.svg";
 
 // Framer Motion
-
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -27,7 +26,12 @@ const SignUp = () => {
       // If the signup is successful, redirect the user to the home page
       setIsSignedUp(true);
     } catch (err) {
-      console.log(err.response.data.message);
+      // Display the error message to the user
+      if (err.response) {
+        alert(err.response.data.msg);
+      } else {
+        alert("An error occurred while registering");
+      }
     }
   };
 
@@ -37,67 +41,63 @@ const SignUp = () => {
 
   return (
     <LinkSwitcher>
-
-    <div className="parent-div">
-
-
+      <div className="parent-div">
         <div className="img-back">
-          <img alt='op' className="img-signup" src={signup}></img>
-          <img alt='op1' className="img-signup-back" src={signup}></img>
-          
+          <img alt="op" className="img-signup" src={signup}></img>
+          <img alt="op1" className="img-signup-back" src={signup}></img>
         </div>
 
+        <div className="parent-div-signup">
+          <div className="signup-box">
+            <h2 className="head-login">Sign Up</h2>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label>
+                  Username
+                  <input
+                    className="cta-txt-signup"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </label>
+              </div>
 
-    <div className="parent-div-signup">
-      <div className="signup-box">
-      <h2 className="head-login">Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-        <label>
-          Username
-          <input
-            className="cta-txt-signup"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
+              <div>
+                <label>
+                  Email
+                  <input
+                    className="cta-txt-signup"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  Password
+                  <input
+                    className="cta-txt-signup"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </label>
+              </div>
+
+              <button className="cta-signup-btn" type="submit">
+                Sign up
+              </button>
+            </form>
+            <Link to="/login">
+              <p>Already have an account?</p>
+            </Link>
+          </div>
         </div>
-        
-        <div>
-        <label>
-          Email
-          <input
-            className="cta-txt-signup"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        </div>
-        
-        <div>
-        <label>
-          Password
-          <input
-            className="cta-txt-signup"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        </div>
-        
-        <button className="cta-signup-btn" type="submit">Sign up</button>
-      </form>
-      <Link to="/login">
-        <p>Already have an account?</p>
-      </Link>
       </div>
-    </div>
-    </div>
-
-     </LinkSwitcher>
+    </LinkSwitcher>
   );
 };
 
