@@ -7,6 +7,7 @@ import landImg from "../../Res/home-buddies.svg";
 import Navbar from "../../Navbar";
 import { APIENDPOINT } from "../../api/API";
 import useAuth from "../../auth/useAuth";
+// import Spinner from "../../Components/Spinner/Spinner";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -15,9 +16,8 @@ const Home = () => {
   const [room, setRoom] = useState("");
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState("");
+  // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
-  window.localStorage.setItem("room", selectedRoom);
 
   useAuth(socket);
 
@@ -28,23 +28,35 @@ const Home = () => {
       socket.on("allRooms", (data) => {
         console.log("rm", data);
         setRooms(data);
+        // setLoading(false);
       });
     });
-/*     return () => {
-      socket.close();
-    } */
+
+    socket.on("newRoomEvent", (msg) => {
+      console.log(msg);
+      const messageContainer = document.getElementById("room-created");
+      messageContainer.innerHTML = msg.msg;
+    });
+
+    return () => {
+      // socket.close();
+      socket.off("newRoomEvent");
+    };
   }, []);
+
+  // if(loading) return <Spinner />;
 
   const createRoom = (e) => {
     e.preventDefault();
-    socket.emit("joinRoom", room);
+    socket.emit("createRoom", room);
     window.localStorage.setItem("room", room);
-    navigate("chat-room")
+    navigate("chat-room");
     setRoom("");
   };
 
   const joinRoom = (e) => {
     e.preventDefault();
+    window.localStorage.setItem("room", selectedRoom);
     navigate("chat-room");
   };
 
@@ -52,7 +64,6 @@ const Home = () => {
     <LinkSwitcher>
       <div className="main-home">
         <Navbar />
-
         <div className="wlcm-txt">
           <h2 className="home-head">
             Hey! Welcome to Chat AR<span className="style-e">é</span>NA
@@ -75,7 +86,6 @@ const Home = () => {
             <FaExternalLinkSquareAlt />
           </div>
         </div>
-
         <div className="page-2" id="create-rm">
           <div className="flexbox-p2">
             <div className="create-room-box">
@@ -134,6 +144,7 @@ const Home = () => {
                     </button>
                   </div>
                 </form>
+                <div id="room-created"></div>
               </div>
             </div>
           </div>

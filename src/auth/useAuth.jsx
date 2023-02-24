@@ -9,7 +9,7 @@ const useAuth = (socket) => {
     }
     return () => {
       socket.close();
-    }
+    };
   }, [socket]);
 };
 

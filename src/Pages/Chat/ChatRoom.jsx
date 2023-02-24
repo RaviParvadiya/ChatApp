@@ -45,14 +45,25 @@ const ChatRoom = () => {
       }));
     });
 
+    socket.on("newRoomEvent", (msg) => {
+      console.log(msg);
+      if (msg.username !== decoded.username) {
+        const messageContainer = document.getElementById("room-created");
+        messageContainer.innerHTML = msg.msg;
+      }
+    });
+
     return () => {
       socket.off("new message");
       socket.off("info");
+      socket.off("newRoomEvent");
     };
-  }, [room]);
+  }, [decoded.username, room]);
 
   socket.on("allUser", (data) => {
-    const filteredData = data.filter((obj) => obj.username !== decoded.username);
+    const filteredData = data.filter(
+      (obj) => obj.username !== decoded.username
+    );
     setUsers(filteredData);
   });
 
@@ -101,6 +112,7 @@ const ChatRoom = () => {
 
   return (
     <div className="chat-room-main">
+      <div id="room-created"></div>
       <div className="chat-room">
         <div>You are entered in {room} chat</div>
         {users.map((u) => (
@@ -111,7 +123,9 @@ const ChatRoom = () => {
         <div id="wlc"></div>
         {msgs.joinmessage.map((msg, index) => (
           <div key={`join-${index}`}>
-            <p id='wlc'>{msg.username} {msg.text}</p>
+            <p id="wlc">
+              {msg.username} {msg.text}
+            </p>
           </div>
         ))}
         {msgs.messages.map((m) => (
@@ -126,7 +140,9 @@ const ChatRoom = () => {
         ))}
         {msgs.leavemessage.map((msg, index) => (
           <div key={`leave-${index}`}>
-            <p id='wlc'>{msg.username} {msg.text}</p>
+            <p id="wlc">
+              {msg.username} {msg.text}
+            </p>
           </div>
         ))}
         <Input
