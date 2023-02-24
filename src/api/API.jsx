@@ -9,5 +9,3 @@ export const APIENDPOINT = "http://localhost:5000/";
 
 //==>  https://chat-server-vo3q.onrender.com
 //==>  https://chat-server-vo3q.onrender.com
-
-
