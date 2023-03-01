@@ -7,6 +7,7 @@ import landImg from "../../Res/home-buddies.svg";
 import Navbar from "../../Navbar";
 import { APIENDPOINT } from "../../api/API";
 import useAuth from "../../auth/useAuth";
+import { Snackbar } from "@mui/material";
 // import Spinner from "../../Components/Spinner/Spinner";
 
 const { io } = require("socket.io-client");
@@ -16,6 +17,8 @@ const Home = () => {
   const [room, setRoom] = useState("");
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -34,8 +37,10 @@ const Home = () => {
 
     socket.on("newRoomEvent", (msg) => {
       console.log(msg);
-      const messageContainer = document.getElementById("room-created");
-      messageContainer.innerHTML = msg.msg;
+      setSnackbarMessage(msg.msg);
+      setSnackbarOpen(true);
+      /* const messageContainer = document.getElementById("room-created");
+      messageContainer.innerHTML = msg.msg; */
     });
 
     return () => {
@@ -64,6 +69,13 @@ const Home = () => {
     <LinkSwitcher>
       <div className="main-home">
         <Navbar />
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          open={snackbarOpen}
+          autoHideDuration={3000}
+          onClose={() => setSnackbarOpen(false)}
+          message={snackbarMessage}
+        />
         <div className="wlcm-txt">
           <h2 className="home-head">
             Hey! Welcome to Chat AR<span className="style-e">é</span>NA
@@ -144,7 +156,6 @@ const Home = () => {
                     </button>
                   </div>
                 </form>
-                <div id="room-created"></div>
               </div>
             </div>
           </div>

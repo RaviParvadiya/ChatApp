@@ -6,6 +6,7 @@ import Input from "../../Components/Input/Input";
 import { useNavigate } from "react-router-dom";
 import { APIENDPOINT } from "../../api/API";
 import "./ChatRoom.css";
+import { Snackbar } from "@mui/material";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -18,6 +19,8 @@ const ChatRoom = () => {
   });
   const [users, setUsers] = useState([]);
   const [input, setInput] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const navigate = useNavigate();
 
   const room = window.localStorage.getItem("room");
@@ -43,6 +46,14 @@ const ChatRoom = () => {
         ...prevMsgs,
         messages: [...prevMsgs.messages, data],
       }));
+    });
+
+    socket.on("newRoomEvent", (msg) => {
+      console.log(msg);
+      if (msg.username !== decoded.username) {
+        setSnackbarMessage(msg.msg);
+        setSnackbarOpen(true);
+      }
     });
 
     return () => {
@@ -102,6 +113,13 @@ const ChatRoom = () => {
   return (
     <div className="chat-room-main">
       <div className="chat-room">
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "left" }}
+          open={snackbarOpen}
+          autoHideDuration={3000}
+          onClose={() => setSnackbarOpen(false)}
+          message={snackbarMessage}
+        />
         <div>You are entered in {room} chat</div>
         {users.map((u) => (
           <div key={u.id}>
