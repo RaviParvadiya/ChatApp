@@ -59,14 +59,11 @@ const ChatRoom = () => {
     return () => {
       socket.off("new message");
       socket.off("info");
-      socket.off("newRoomEvent");
     };
-  }, [decoded.username, room]);
+  }, [room]);
 
   socket.on("allUser", (data) => {
-    const filteredData = data.filter(
-      (obj) => obj.username !== decoded.username
-    );
+    const filteredData = data.filter((obj) => obj.username !== decoded.username);
     setUsers(filteredData);
   });
 
@@ -132,9 +129,7 @@ const ChatRoom = () => {
         <div id="wlc"></div>
         {msgs.joinmessage.map((msg, index) => (
           <div key={`join-${index}`}>
-            <p id="wlc">
-              {msg.username} {msg.text}
-            </p>
+            <p id='wlc'>{msg.username} {msg.text}</p>
           </div>
         ))}
         {msgs.messages.map((m) => (
@@ -149,9 +144,7 @@ const ChatRoom = () => {
         ))}
         {msgs.leavemessage.map((msg, index) => (
           <div key={`leave-${index}`}>
-            <p id="wlc">
-              {msg.username} {msg.text}
-            </p>
+            <p id='wlc'>{msg.username} {msg.text}</p>
           </div>
         ))}
         <Input
