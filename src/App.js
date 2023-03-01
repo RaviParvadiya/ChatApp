@@ -7,6 +7,8 @@ import ChatRoom from "./Pages/Chat/ChatRoom";
 import ProtectedRoute from "./Components/PrivateRoute/ProtectedRoute";
 import useAuth from "./auth/useAuth";
 import { APIENDPOINT } from "./api/API";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -15,6 +17,7 @@ function App() {
   useAuth(socket);
 
   return (
+    <Provider store={store}>
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Login />} />
@@ -25,6 +28,7 @@ function App() {
       </Route>
       <Route path="/signup" element={<SignUp />} />
     </Routes>
+    </Provider>
   );
 }
 

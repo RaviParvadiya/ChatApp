@@ -8,8 +8,8 @@ import Navbar from "../../Navbar";
 import { APIENDPOINT } from "../../api/API";
 import useAuth from "../../auth/useAuth";
 import { Snackbar } from "@mui/material";
-import { setRooms } from "../../redux";
-import store from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { setRooms } from "../../redux/room/roomActions";
 // import Spinner from "../../Components/Spinner/Spinner";
 
 const { io } = require("socket.io-client");
@@ -23,6 +23,8 @@ const Home = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const allRooms = useSelector((state) => state.room.rooms);
+  const dispatch = useDispatch();
 
   useAuth(socket);
 
@@ -31,9 +33,7 @@ const Home = () => {
       console.log(socket.id);
       socket.emit("allRooms");
       socket.on("allRooms", (data) => {
-        console.log("rm", data);
-        // setRooms(data);
-        store.dispatch(setRooms(data));
+        dispatch(setRooms(data));
         // setLoading(false);
       });
     });
@@ -42,15 +42,17 @@ const Home = () => {
       console.log(msg);
       setSnackbarMessage(msg.msg);
       setSnackbarOpen(true);
-      /* const messageContainer = document.getElementById("room-created");
-      messageContainer.innerHTML = msg.msg; */
+    });
+
+    socket.on("updateRooms", (data) => {
+      dispatch(setRooms(data));
     });
 
     return () => {
       // socket.close();
       socket.off("newRoomEvent");
     };
-  }, []);
+  });
 
   // if(loading) return <Spinner />;
 
@@ -143,11 +145,11 @@ const Home = () => {
                         <option className="drp-dwn-dft" value={null} hidden>
                           Select an option
                         </option>
-                        {/* {rooms.map((room) => (
+                        {allRooms.map((room) => (
                           <option className="drp-dwn-option" key={room._id}>
                             {room.roomName}
                           </option>
-                        ))} */}
+                        ))}
                       </select>
                     </label>
                     <button

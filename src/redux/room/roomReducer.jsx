@@ -1,18 +1,20 @@
-import { SET_ROOMS } from './roomTypes'
+import { SET_ROOMS } from "./roomTypes";
 
 const initialState = {
-  rooms: []
-}
+  rooms: [],
+};
 
 const roomReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_ROOMS: return {
-      ...state,
-      rooms: action.payload
-    }
+    case SET_ROOMS:
+      return {
+        ...state,
+        rooms: action.payload,
+      };
 
-    default: return state
+    default:
+      return state;
   }
-}
+};
 
-export default roomReducer
+export default roomReducer;

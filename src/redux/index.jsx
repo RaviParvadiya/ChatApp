@@ -1,1 +1,1 @@
-export { setRooms } from './room/roomActions'
+export { setRooms } from "./room/roomActions";
