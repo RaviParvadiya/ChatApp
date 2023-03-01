@@ -8,6 +8,8 @@ import Navbar from "../../Navbar";
 import { APIENDPOINT } from "../../api/API";
 import useAuth from "../../auth/useAuth";
 import { Snackbar } from "@mui/material";
+import { setRooms } from "../../redux";
+import store from "../../redux/store";
 // import Spinner from "../../Components/Spinner/Spinner";
 
 const { io } = require("socket.io-client");
@@ -15,7 +17,7 @@ const socket = io(APIENDPOINT);
 
 const Home = () => {
   const [room, setRoom] = useState("");
-  const [rooms, setRooms] = useState([]);
+  // const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -30,7 +32,8 @@ const Home = () => {
       socket.emit("allRooms");
       socket.on("allRooms", (data) => {
         console.log("rm", data);
-        setRooms(data);
+        // setRooms(data);
+        store.dispatch(setRooms(data));
         // setLoading(false);
       });
     });
@@ -140,11 +143,11 @@ const Home = () => {
                         <option className="drp-dwn-dft" value={null} hidden>
                           Select an option
                         </option>
-                        {rooms.map((room) => (
+                        {/* {rooms.map((room) => (
                           <option className="drp-dwn-option" key={room._id}>
                             {room.roomName}
                           </option>
-                        ))}
+                        ))} */}
                       </select>
                     </label>
                     <button
