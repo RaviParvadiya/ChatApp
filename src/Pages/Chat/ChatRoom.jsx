@@ -24,7 +24,7 @@ const ChatRoom = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const navigate = useNavigate();
-  
+
   const room = useSelector((state) => state.selectedRoom.selectedRoom);
   const dispatch = useDispatch();
 
@@ -63,15 +63,14 @@ const ChatRoom = () => {
       socket.off("new message");
       socket.off("info");
     };
-  }, [room, decoded.username]);
-useEffect(() => {
+  }, [decoded.username]);
+
   socket.on("allUser", (data) => {
     const filteredData = data.filter(
       (obj) => obj.username !== decoded.username
     );
     setUsers(filteredData);
   });
-  })
 
   useEffect(() => {
     socket.on("info", (msg) => {
@@ -116,8 +115,6 @@ useEffect(() => {
       socket.off("leavemessage");
     };
   });
-
-  console.log("user", users);
 
   return (
     <div className="chat-room-main">

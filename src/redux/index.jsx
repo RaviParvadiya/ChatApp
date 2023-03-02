@@ -1,2 +1,2 @@
 export { setRooms } from "./room/roomActions";
-export { selectRoom } from "./selectRoom/selectRoomActions"
+export * from "./selectRoom/selectRoomActions"

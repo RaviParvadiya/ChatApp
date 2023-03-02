@@ -1,4 +1,5 @@
 import { SELECT_ROOM } from "./selectRoomTypes";
+import { RESET_SELECTED_ROOM } from "./selectRoomTypes";
 
 export const selectRoom = (room) => {
   return {
@@ -9,6 +10,6 @@ export const selectRoom = (room) => {
 
 export const resetSelectedRoom = () => {
   return {
-    type: 'RESET_SELECTED_ROOM',
+    type: RESET_SELECTED_ROOM,
   };
 };
