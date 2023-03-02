@@ -1,0 +1,2 @@
+export const SELECT_ROOM = "SELECT_ROOM";
+export const RESET_SELECTED_ROOM = "RESET_SELECTED_ROOM";

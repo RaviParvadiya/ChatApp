@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { APIENDPOINT } from "../../api/API";
 import "./ChatRoom.css";
 import { Snackbar } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { resetSelectedRoom } from "../../redux/selectRoom/selectRoomActions";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -22,8 +24,9 @@ const ChatRoom = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const navigate = useNavigate();
-
-  const room = window.localStorage.getItem("room");
+  
+  const room = useSelector((state) => state.selectedRoom.selectedRoom);
+  const dispatch = useDispatch();
 
   const token = window.localStorage.getItem("token");
   const decoded = jwt_decode(token);
@@ -60,12 +63,15 @@ const ChatRoom = () => {
       socket.off("new message");
       socket.off("info");
     };
-  }, [room]);
-
+  }, [room, decoded.username]);
+useEffect(() => {
   socket.on("allUser", (data) => {
-    const filteredData = data.filter((obj) => obj.username !== decoded.username);
+    const filteredData = data.filter(
+      (obj) => obj.username !== decoded.username
+    );
     setUsers(filteredData);
   });
+  })
 
   useEffect(() => {
     socket.on("info", (msg) => {
@@ -93,6 +99,7 @@ const ChatRoom = () => {
 
   const leaveRoom = () => {
     socket.emit("leaveRoom");
+    dispatch(resetSelectedRoom());
     socket.disconnect();
     navigate(-1);
   };
@@ -109,6 +116,8 @@ const ChatRoom = () => {
       socket.off("leavemessage");
     };
   });
+
+  console.log("user", users);
 
   return (
     <div className="chat-room-main">
@@ -129,7 +138,9 @@ const ChatRoom = () => {
         <div id="wlc"></div>
         {msgs.joinmessage.map((msg, index) => (
           <div key={`join-${index}`}>
-            <p id='wlc'>{msg.username} {msg.text}</p>
+            <p id="wlc">
+              {msg.username} {msg.text}
+            </p>
           </div>
         ))}
         {msgs.messages.map((m) => (
@@ -144,7 +155,9 @@ const ChatRoom = () => {
         ))}
         {msgs.leavemessage.map((msg, index) => (
           <div key={`leave-${index}`}>
-            <p id='wlc'>{msg.username} {msg.text}</p>
+            <p id="wlc">
+              {msg.username} {msg.text}
+            </p>
           </div>
         ))}
         <Input

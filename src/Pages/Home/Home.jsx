@@ -10,6 +10,7 @@ import useAuth from "../../auth/useAuth";
 import { Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setRooms } from "../../redux/room/roomActions";
+import { selectRoom } from "../../redux";
 // import Spinner from "../../Components/Spinner/Spinner";
 
 const { io } = require("socket.io-client");
@@ -23,6 +24,7 @@ const Home = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
   const allRooms = useSelector((state) => state.room.rooms);
   const dispatch = useDispatch();
 
@@ -49,24 +51,24 @@ const Home = () => {
     });
 
     return () => {
-      // socket.close();
       socket.off("newRoomEvent");
+      socket.off("updateRooms");
     };
-  });
+  }, [dispatch]);
 
   // if(loading) return <Spinner />;
 
   const createRoom = (e) => {
     e.preventDefault();
     socket.emit("createRoom", room);
-    window.localStorage.setItem("room", room);
+    dispatch(selectRoom(room));
     navigate("chat-room");
     setRoom("");
   };
 
   const joinRoom = (e) => {
     e.preventDefault();
-    window.localStorage.setItem("room", selectedRoom);
+    dispatch(selectRoom(selectedRoom))
     navigate("chat-room");
   };
 
