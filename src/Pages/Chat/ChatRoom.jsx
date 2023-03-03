@@ -9,6 +9,7 @@ import "./ChatRoom.css";
 import { Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { resetSelectedRoom } from "../../redux/selectRoom/selectRoomActions";
+import { setUsers } from "../../redux/userSlice";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -19,13 +20,14 @@ const ChatRoom = () => {
     messages: [],
     leavemessage: [],
   });
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [input, setInput] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const navigate = useNavigate();
 
   const room = useSelector((state) => state.selectedRoom.selectedRoom);
+  const users = useSelector((state) => state.user.users);
   const dispatch = useDispatch();
 
   const token = window.localStorage.getItem("token");
@@ -41,7 +43,7 @@ const ChatRoom = () => {
       messageContainer.innerHTML = msg.username + " " + msg.text;
     });
 
-    socket.emit("getroominfo", room);
+    // socket.emit("getroominfo", room);
 
     socket.on("new message", (data) => {
       // console.log("Received message:", data.message, "from", data.name);
@@ -66,10 +68,15 @@ const ChatRoom = () => {
   }, [decoded.username]);
 
   socket.on("allUser", (data) => {
-    const filteredData = data.filter(
+/*     const filteredData = data.filter(
       (obj) => obj.username !== decoded.username
-    );
-    setUsers(filteredData);
+    ); */
+    // setUsers(filteredData);
+    dispatch(setUsers({ users: data, currentUser: decoded.username }));
+  });
+
+  socket.on("roomUsers", (data) => {
+    dispatch(setUsers({ users: data, currentUser: decoded.username }));
   });
 
   useEffect(() => {
@@ -98,9 +105,9 @@ const ChatRoom = () => {
 
   const leaveRoom = () => {
     socket.emit("leaveRoom");
-    dispatch(resetSelectedRoom());
     socket.disconnect();
     navigate(-1);
+    dispatch(resetSelectedRoom());
   };
 
   useEffect(() => {
