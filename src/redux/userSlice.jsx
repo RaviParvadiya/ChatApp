@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const userSlice = createSlice({
   name: "users",
-  initialState: {users: []},
+  initialState: { users: [] },
   reducers: {
     setUsers: (state, action) => {
-        const currentUser = action.payload.currentUser;
-      state.users = action.payload.users.filter(user => user.username !== currentUser);;
+      const currentUser = action.payload.currentUser;
+      state.users = action.payload.users.filter(
+        (user) => user.username !== currentUser
+      );
     },
   },
 });

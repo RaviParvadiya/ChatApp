@@ -9,7 +9,7 @@ import { APIENDPOINT } from "../../api/API";
 import useAuth from "../../auth/useAuth";
 import { Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { setRooms } from "../../redux/room/roomActions";
+import { setRooms } from "../../redux";
 import { selectRoom } from "../../redux";
 import Spinner from "../../Components/Spinner/Spinner";
 
