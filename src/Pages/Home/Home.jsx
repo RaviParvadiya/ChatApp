@@ -8,9 +8,10 @@ import Navbar from "../../Navbar";
 import { APIENDPOINT } from "../../api/API";
 import useAuth from "../../auth/useAuth";
 import { Snackbar } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import { setRooms } from "../../redux";
-import store from "../../redux/store";
-// import Spinner from "../../Components/Spinner/Spinner";
+import { selectRoom } from "../../redux";
+import Spinner from "../../Components/Spinner/Spinner";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -21,20 +22,21 @@ const Home = () => {
   const [selectedRoom, setSelectedRoom] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const allRooms = useSelector((state) => state.room.rooms);
+  const dispatch = useDispatch();
 
   useAuth(socket);
 
   useEffect(() => {
     socket.on("connect", () => {
       console.log(socket.id);
-      socket.emit("allRooms");
+      // socket.emit("allRooms");
       socket.on("allRooms", (data) => {
-        console.log("rm", data);
-        // setRooms(data);
-        store.dispatch(setRooms(data));
-        // setLoading(false);
+        dispatch(setRooms(data));
+        setLoading(false);
       });
     });
 
@@ -42,29 +44,31 @@ const Home = () => {
       console.log(msg);
       setSnackbarMessage(msg.msg);
       setSnackbarOpen(true);
-      /* const messageContainer = document.getElementById("room-created");
-      messageContainer.innerHTML = msg.msg; */
+    });
+
+    socket.on("updateRooms", (data) => {
+      dispatch(setRooms(data));
     });
 
     return () => {
-      // socket.close();
       socket.off("newRoomEvent");
+      socket.off("updateRooms");
     };
-  }, []);
+  }, [dispatch]);
 
-  // if(loading) return <Spinner />;
+  if(loading) return <Spinner />;
 
   const createRoom = (e) => {
     e.preventDefault();
     socket.emit("createRoom", room);
-    window.localStorage.setItem("room", room);
+    dispatch(selectRoom(room));
     navigate("chat-room");
     setRoom("");
   };
 
   const joinRoom = (e) => {
     e.preventDefault();
-    window.localStorage.setItem("room", selectedRoom);
+    dispatch(selectRoom(selectedRoom));
     navigate("chat-room");
   };
 
@@ -143,11 +147,11 @@ const Home = () => {
                         <option className="drp-dwn-dft" value={null} hidden>
                           Select an option
                         </option>
-                        {/* {rooms.map((room) => (
+                        {allRooms.map((room) => (
                           <option className="drp-dwn-option" key={room._id}>
                             {room.roomName}
                           </option>
-                        ))} */}
+                        ))}
                       </select>
                     </label>
                     <button

@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { APIENDPOINT } from "../../api/API";
 import "./ChatRoom.css";
 import { Snackbar } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { resetSelectedRoom } from "../../redux/selectRoom/selectRoomActions";
+import { setUsers } from "../../redux/userSlice";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -17,13 +20,15 @@ const ChatRoom = () => {
     messages: [],
     leavemessage: [],
   });
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [input, setInput] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const navigate = useNavigate();
 
-  const room = window.localStorage.getItem("room");
+  const room = useSelector((state) => state.selectedRoom.selectedRoom);
+  const users = useSelector((state) => state.user.users);
+  const dispatch = useDispatch();
 
   const token = window.localStorage.getItem("token");
   const decoded = jwt_decode(token);
@@ -38,7 +43,7 @@ const ChatRoom = () => {
       messageContainer.innerHTML = msg.username + " " + msg.text;
     });
 
-    socket.emit("getroominfo", room);
+    // socket.emit("getroominfo", room);
 
     socket.on("new message", (data) => {
       // console.log("Received message:", data.message, "from", data.name);
@@ -60,11 +65,18 @@ const ChatRoom = () => {
       socket.off("new message");
       socket.off("info");
     };
-  }, [room]);
+  }, [decoded.username]);
 
   socket.on("allUser", (data) => {
-    const filteredData = data.filter((obj) => obj.username !== decoded.username);
-    setUsers(filteredData);
+/*     const filteredData = data.filter(
+      (obj) => obj.username !== decoded.username
+    ); */
+    // setUsers(filteredData);
+    dispatch(setUsers({ users: data, currentUser: decoded.username }));
+  });
+
+  socket.on("roomUsers", (data) => {
+    dispatch(setUsers({ users: data, currentUser: decoded.username }));
   });
 
   useEffect(() => {
@@ -95,6 +107,7 @@ const ChatRoom = () => {
     socket.emit("leaveRoom");
     socket.disconnect();
     navigate(-1);
+    dispatch(resetSelectedRoom());
   };
 
   useEffect(() => {
@@ -129,7 +142,9 @@ const ChatRoom = () => {
         <div id="wlc"></div>
         {msgs.joinmessage.map((msg, index) => (
           <div key={`join-${index}`}>
-            <p id='wlc'>{msg.username} {msg.text}</p>
+            <p id="wlc">
+              {msg.username} {msg.text}
+            </p>
           </div>
         ))}
         {msgs.messages.map((m) => (
@@ -144,7 +159,9 @@ const ChatRoom = () => {
         ))}
         {msgs.leavemessage.map((msg, index) => (
           <div key={`leave-${index}`}>
-            <p id='wlc'>{msg.username} {msg.text}</p>
+            <p id="wlc">
+              {msg.username} {msg.text}
+            </p>
           </div>
         ))}
         <Input
