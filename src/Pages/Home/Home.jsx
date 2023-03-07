@@ -9,8 +9,7 @@ import { APIENDPOINT } from "../../api/API";
 import useAuth from "../../auth/useAuth";
 import { Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { setRooms } from "../../redux";
-import { selectRoom } from "../../redux";
+import { setRooms, selectRoom } from "../../redux";
 import Spinner from "../../Components/Spinner/Spinner";
 
 const { io } = require("socket.io-client");
@@ -41,7 +40,6 @@ const Home = () => {
     });
 
     socket.on("newRoomEvent", (msg) => {
-      console.log(msg);
       setSnackbarMessage(msg.msg);
       setSnackbarOpen(true);
     });

@@ -6,8 +6,9 @@ export const userSlice = createSlice({
   reducers: {
     setUsers: (state, action) => {
       const currentUser = action.payload.currentUser;
+      const currentRoom = action.payload.currentRoom;
       state.users = action.payload.users.filter(
-        (user) => user.username !== currentUser
+        (user) => user.username !== currentUser && user.room == currentRoom
       );
     },
   },

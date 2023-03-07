@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import roomReducer from "./room/roomReducer";
 import selectRoomReducer from "./selectRoom/selectRoomReducer";
-import userSlice from "./userSlice";
+import userSlice from "./userSlice/userSlice";
 
 const rootReducer = combineReducers({
   room: roomReducer,

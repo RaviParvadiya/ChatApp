@@ -8,8 +8,8 @@ import { APIENDPOINT } from "../../api/API";
 import "./ChatRoom.css";
 import { Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { resetSelectedRoom } from "../../redux/selectRoom/selectRoomActions";
-import { setUsers } from "../../redux/userSlice";
+import { resetSelectedRoom } from "../../redux";
+import { setUsers } from "../../redux/userSlice/userSlice";
 
 const { io } = require("socket.io-client");
 const socket = io(APIENDPOINT);
@@ -54,7 +54,6 @@ const ChatRoom = () => {
     });
 
     socket.on("newRoomEvent", (msg) => {
-      console.log(msg);
       if (msg.username !== decoded.username) {
         setSnackbarMessage(msg.msg);
         setSnackbarOpen(true);
@@ -72,7 +71,7 @@ const ChatRoom = () => {
       (obj) => obj.username !== decoded.username
     ); */
     // setUsers(filteredData);
-    dispatch(setUsers({ users: data, currentUser: decoded.username }));
+    dispatch(setUsers({ users: data, currentUser: decoded.username, currentRoom: room }));
   });
 
   socket.on("roomUsers", (data) => {
